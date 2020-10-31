@@ -134,6 +134,10 @@ const TitleForm = styled.span`
 const Content = styled.div`
   margin-top: 50px;
 
+  @media(min-width: 1200px) {
+    margin-top: 0;
+  }
+
   @media(min-width: 1501px) {
     margin-top: -70px;
   }
@@ -156,6 +160,7 @@ const ContentSubtitle = styled.span`
   color: #aaa;
   text-align: center;
   margin-top: 10px;
+  width: 80%;
 `;
 
 const ContentBottom = styled.div`
