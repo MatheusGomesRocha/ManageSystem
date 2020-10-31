@@ -2,202 +2,21 @@ import React, { useState } from 'react';
 import './App.css';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
-import { h1, h2, span, wBtn } from './Config';
+import bg_img from './city.jpg';
 
-const Container = styled.div``;
+import {
+  Container,
 
-const Header = styled.div`
-  background: linear-gradient(to right, #4b6cb7, #182848);
-  font-family: Roboto;
-  align-items: center;
-`;
+  Header,
+  HeaderText,
 
-const Top = styled.div`
-  height: 50px;
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
-
-  @media(min-width: 300px) and (max-width: 679px) {
-    display: none;
-  }
-`;
-const TopLeft = styled.div`
-  margin-left: 50px;
-`;
-const TopTitle = styled.span`
-  font-size: ${h2};
-  color: #fff;
-`;
-
-const TopRight = styled.div`
-  display: flex;
-  margin-right: 100px;
-`;
-
-const EmailDiv = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-`;
-const TopText = styled.span`
-  color: #fff;
-  font-size: 20px;
-  margin-left: 10px;
-  border-right: ${props => props.bRight || 'none'}
-`;
-
-
-const Bottom = styled.div`
-  align-items: center;
-  display: flex;
-
-  @media(min-width: 300px) and (max-width: 679px) {
-    flex-direction: column;
-    padding: 25px 15px;
-  }
-  @media(min-width: 680px) {
-    justify-content: space-between;
-  }
-  
-`;
-
-
-const Left = styled.div`
-  @media(min-width: 300px) and (max-width: 679px) {
-    width: 100%;
-  }
-  @media(min-width: 680px) {
-    margin-left: 50px;
-    width: 50%;
-    margin-bottom: 80px;
-  }
-`;
-const LeftTitle = styled.h1`
-  color: #fff;
-  font-size: ${h1};
-
-  @media(min-width: 300px) and (max-width: 679px) {
-    font-size: 35px;
-    text-align: center;
-  }
-  @media(min-width: 680px) {
-  }
-`;
-const LeftText = styled.p`
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 22px;
-  width: 100%;
-
-  @media(min-width: 300px) and (max-width: 679px) {
-    font-size: ${span};
-    text-align: center;
-  }
-`;
-
-
-const Form = styled.form`
-  height: 400px;
-  width: 80%;
-  z-index: 0;
-  background-color: #fff;
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  @media(min-width: 300px) and (max-width: 679px) {
-    margin-top: 15px
-  }
-  
-  @media(min-width: 680px) {
-    width: 400px;
-    margin-right: 50px;
-  }
-
-  @media(min-width: 1200px) {
-    margin-top: 50px;
-    margin-right: 100px;
-  }
-`;
-
-const TitleForm = styled.span`
-  text-align: center;
-  font-size: 28px;
-  height: 40px;
-`;
-
-
-
-const Content = styled.div`
-  margin-top: 50px;
-
-  @media(min-width: 1200px) {
-    margin-top: 0;
-  }
-
-  @media(min-width: 1501px) {
-    margin-top: -70px;
-  }
-`;
-
-const ContentTop = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const ContentTitle = styled.span`
-  font-size: ${h1};
-
-  @media(min-width: 300px) and (max-width: 679px) {
-    font-size: ${h2};
-  }
-`;
-const ContentSubtitle = styled.span`
-  font-size: ${span};
-  color: #aaa;
-  text-align: center;
-  margin-top: 10px;
-  width: 80%;
-`;
-
-const ContentBottom = styled.div`
-  display: flex;
-
-  @media(min-width: 300px) and (max-width: 679px) {
-    flex-direction: column;
-    margin-top: 70px;
-  }
-  
-  @media(min-width: 680px) {
-    margin: 70px 50px 50px 50px;
-    justify-content: space-between;
-  }
-`;
-
-const ContentBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media(min-width: 300px) and (max-width: 679px) {
-    margin-top: 30px;
-  }
-
-  @media(min-width: 680px) {
-    width: 27%;
-  }
-`;
-const ContentText = styled.span`
-  font-size: ${h2};
-`;
-const ContentSubtext = styled.p`
-  text-align: center;
-  color: #aaa;
-  font-size: ${span};
-`;
+  SubHeader,
+  Img,
+  DivTitle,
+  Title,
+  SubTitle
+} from './AppStyled';
 
 
 
@@ -514,90 +333,24 @@ function App() {
   })
 
   return (
-    <Container id="app" fluid>
-
-      <Header>
-        <Top>
-          <TopLeft>
-            <TopTitle>SeuMercado</TopTitle>
-          </TopLeft>
-
-          <TopRight>
-            <TopText bRight="1px solid rgba(255, 255, 255, 0.4)">alsmakmsakma</TopText>
-            <EmailDiv>
-              <EmailSvg />
-              <TopText>Emai@hotmail.com</TopText>
-            </EmailDiv>
-          </TopRight>
-        </Top>
-
-        <Bottom>
-          <Left>
-            <LeftTitle>Sistema de Gerenciamento SeuMercado</LeftTitle>
-            <LeftText>
-              Sistema feito para Supermercados, Mercadinhos e Mercantis com o intuíto com que o contratante gerencie seus Produtos, Tráfego de usuários e pedidos feitos
-              em seu estabelecimento. App SeuMercado disponível na PlayStore.
-              </LeftText>
-          </Left>
-
-          <Form onSubmit={handleSubmit}>
-            <TitleForm>Faça seu login</TitleForm>
-
-            <TextField
-              style={{ marginTop: 20, width: wBtn }}
-              label="Email"
-              type="email"
-              autoComplete="current-email"
-              variant="outlined"
-              onChange={handleEmail}
-            />
-            <TextField
-              style={{ marginTop: 20, width: wBtn }}
-              label="Senha"
-              type="password"
-              autoComplete="current-password"
-              variant="outlined"
-              onChange={handlePassword}
-            />
-            <Button style={{ marginTop: 20, width: wBtn, height: 50, fontSize: 18 }} type="submit" variant="contained" color="secondary">Finalizar</Button>
-          </Form>
-
-        </Bottom>
-
-        {isTabletOrMobileDevice &&
-          <svg id="svg" style={{ marginTop: isTabletOrMobileDeviceMax ? -220 : -350, display: 'flex' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,224L48,202.7C96,181,192,139,288,149.3C384,160,480,224,576,240C672,256,768,224,864,192C960,160,1056,128,1152,138.7C1248,149,1344,203,1392,229.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-        }
-
+    <Container>
+      <Header style={{ borderBottomColor: '#000', borderBottomWidth: '10px' }}>
+        <HeaderText>SeuMercado</HeaderText>
+        <Button style={{ height: 50, width: 150, fontSize: 16 }} variant="contained" color="primary">Começar</Button>
       </Header>
 
-      <Content>
-        <ContentTop>
-          <ContentTitle>Confira nosso serviços</ContentTitle>
-          <ContentSubtitle>Junte-se a nós no nosso Sistema de Gerenciamento feito para pessoas que querem mais organização e agilidade em seu estabelecimento</ContentSubtitle>
-        </ContentTop>
+      <SubHeader>
 
-        <ContentBottom>
+        <DivTitle>
+          <Title>Bem Vindo ao site oficial do SeuMercado</Title>
+          <SubTitle>
+            Nós somos responsáveis por criar e lançar seu estabelecimento no nosso App com o intuíto de aumentar
+            a quantidade de seus clientes, e otimizar os pedidos recebidos.
+          </SubTitle>
+        </DivTitle>
 
-          <ContentBlock>
-            <HandsSvg />
-            <ContentText>Menos trabalho</ContentText>
-            <ContentSubtext>Em nosso sistema, tudo o que você precisa fazer é cadastrar seus produtos. Nós garantimos todas funcionalidades possíveis, como, Notificação de novos pedidos, Sistema de busca.</ContentSubtext>
-          </ContentBlock>
-
-          <ContentBlock>
-            <OrgSvg />
-            <ContentText>Mais organização</ContentText>
-            <ContentSubtext>Aqui você não se perde, temos tabelas organizadas a seu gosto e em tópicos separados visando a melhor experiência do usuário.</ContentSubtext>
-          </ContentBlock>
-
-          <ContentBlock>
-            <SaveSvg />
-            <ContentText>Você economiza</ContentText>
-            <ContentSubtext>Mais barato que você comprar um site/app, e ainda garantimos 150% de novos clientes com nosso sistema de Marketing.</ContentSubtext>
-          </ContentBlock>
-        </ContentBottom>
-      </Content>
-
+        <Img src={bg_img} />
+      </SubHeader>
 
     </Container>
   );
