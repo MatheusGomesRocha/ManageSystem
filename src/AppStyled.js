@@ -9,7 +9,7 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 20% 0 20%;
+    border-bottom: 1px solid #ddd;
 
     @media(max-width: 800px) {
         display: none;
@@ -17,6 +17,11 @@ export const Header = styled.div`
 `;
 export const HeaderText = styled.span`
     font-size: ${h2};
+    margin-left: 20%;
+
+    @media(min-width: 1501px) {
+        margin-left: 25%;
+    }
 `;
 
 

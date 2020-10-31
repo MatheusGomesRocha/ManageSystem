@@ -334,9 +334,9 @@ function App() {
 
   return (
     <Container>
-      <Header style={{ borderBottomColor: '#000', borderBottomWidth: '10px' }}>
+      <Header>
         <HeaderText>SeuMercado</HeaderText>
-        <Button style={{ height: 50, width: 150, fontSize: 16 }} variant="contained" color="primary">Começar</Button>
+        <Button style={{ height: 40, width: 150, fontSize: 16, marginRight: isLgDesktop ? '25%' : '20%' }} variant="contained" color="primary">Começar</Button>
       </Header>
 
       <SubHeader>
