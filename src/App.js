@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
+import { h1, h2, span, wBtn } from './Config';
 
 const Container = styled.div``;
 
@@ -18,6 +19,7 @@ const Top = styled.div`
   align-items: center;
   justify-content: space-between;
   display: flex;
+
   @media(min-width: 300px) and (max-width: 679px) {
     display: none;
   }
@@ -26,13 +28,13 @@ const TopLeft = styled.div`
   margin-left: 50px;
 `;
 const TopTitle = styled.span`
-  font-size: 30px;
+  font-size: ${h2};
   color: #fff;
 `;
 
 const TopRight = styled.div`
   display: flex;
-  margin-right: 50px;
+  margin-right: 100px;
 `;
 
 const EmailDiv = styled.div`
@@ -49,15 +51,14 @@ const TopText = styled.span`
 
 
 const Bottom = styled.div`
-  min-height: 500px;
   align-items: center;
   display: flex;
+
   @media(min-width: 300px) and (max-width: 679px) {
     flex-direction: column;
-    padding: 30px 15px;
+    padding: 25px 15px;
   }
   @media(min-width: 680px) {
-    align-items: center;
     justify-content: space-between;
   }
   
@@ -71,25 +72,27 @@ const Left = styled.div`
   @media(min-width: 680px) {
     margin-left: 50px;
     width: 50%;
+    margin-bottom: 80px;
   }
 `;
 const LeftTitle = styled.h1`
   color: #fff;
-  font-size: 50px;
-  width: 80%;
+  font-size: ${h1};
+
   @media(min-width: 300px) and (max-width: 679px) {
-    width: 100%;
     font-size: 35px;
     text-align: center;
+  }
+  @media(min-width: 680px) {
   }
 `;
 const LeftText = styled.p`
   color: rgba(255, 255, 255, 0.5);
   font-size: 22px;
-  width: 80%;
+  width: 100%;
+
   @media(min-width: 300px) and (max-width: 679px) {
-    width: 100%;
-    font-size: 20px;
+    font-size: ${span};
     text-align: center;
   }
 `;
@@ -97,9 +100,9 @@ const LeftText = styled.p`
 
 const Form = styled.form`
   height: 400px;
-  
+  width: 80%;
+  z-index: 0;
   background-color: #fff;
-  box-shadow-color: red;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -110,8 +113,13 @@ const Form = styled.form`
   }
   
   @media(min-width: 680px) {
+    width: 400px;
     margin-right: 50px;
-    width: 400px
+  }
+
+  @media(min-width: 1200px) {
+    margin-top: 50px;
+    margin-right: 100px;
   }
 `;
 
@@ -121,43 +129,70 @@ const TitleForm = styled.span`
   height: 40px;
 `;
 
-const Input = styled.input`
-  border: 1px solid #ddd;
-  width: 80%;
-  height: 30px;
-  padding: 10px;
-  margin-top: 25px;
-  font-size: 18px;
-  transition: 0.5s;
-`;
-
-const InputBtn = styled.input`
-  background: linear-gradient(to right, #4b6cb7, #182848);
-  margin-top: 25px;
-  height: 50px;
-  width: 80%;
-  border-radius: 25px;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  outline: 0px;
-  transition: 0.2s;
-`;
 
 
 const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
+  margin-top: 50px;
+
+  @media(min-width: 1501px) {
+    margin-top: -70px;
+  }
 `;
 
-const ContentTop = styled.div``;
-const ContentTitle = styled.span``;
-const ContentSubtitle = styled.span``;
+const ContentTop = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const ContentTitle = styled.span`
+  font-size: ${h1};
 
-const ContentBottom = styled.div``;
-const ContentBlock = styled.div``;
-const ContentText = styled.span``;
-const ContentSubtext = styled.p``;
+  @media(min-width: 300px) and (max-width: 679px) {
+    font-size: ${h2};
+  }
+`;
+const ContentSubtitle = styled.span`
+  font-size: ${span};
+  color: #aaa;
+  text-align: center;
+  margin-top: 10px;
+`;
+
+const ContentBottom = styled.div`
+  display: flex;
+
+  @media(min-width: 300px) and (max-width: 679px) {
+    flex-direction: column;
+    margin-top: 70px;
+  }
+  
+  @media(min-width: 680px) {
+    margin: 70px 50px 50px 50px;
+    justify-content: space-between;
+  }
+`;
+
+const ContentBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media(min-width: 300px) and (max-width: 679px) {
+    margin-top: 30px;
+  }
+
+  @media(min-width: 680px) {
+    width: 27%;
+  }
+`;
+const ContentText = styled.span`
+  font-size: ${h2};
+`;
+const ContentSubtext = styled.p`
+  text-align: center;
+  color: #aaa;
+  font-size: ${span};
+`;
 
 
 
@@ -228,7 +263,7 @@ function App() {
 
   const HandsSvg = () => {
     return (
-      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      <svg width="100px" height="100px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
         viewBox="0 0 512.002 512.002">
         <path fill="#F29F5C" d="M418.258,249.103L405.252,143.45l-24.372,3l0.01-0.017l-47.25-26.591
 	c-5.04-2.836-10.824-4.07-16.583-3.538l-74.606,6.9c-9.171,0.848-17.366,6.081-21.993,14.045l-52.584,90.508
@@ -335,9 +370,27 @@ function App() {
     );
   }
 
+  const OrgSvg = () => {
+    return (
+      <svg width="100px" height="100px" viewBox="0 -47 450.78 450" xmlns="http://www.w3.org/2000/svg"><path d="m306.511719 149.519531h144.269531v57.902344h-144.269531zm0 0" fill="#00efd1" />
+        <g fill="#00acea">
+          <path d="m306.511719 297.191406h98.878906v57.898438h-98.878906zm0 0" />
+          <path d="m306.511719 2.851562h98.878906v57.898438h-98.878906zm0 0" />
+          <path d="m166.75 121.570312v113.800782l-83.371094 26.890625-.988281-.320313v-113.472656l.097656-.296875.890625.289063zm0 0" />
+        </g>
+        <path d="m166.75 121.570312-83.371094 26.890626-.890625-.289063-82.488281-26.601563 83.378906-26.890624zm0 0" fill="#00efd1" />
+        <path d="m82.488281 148.171875-.097656.296875v113.472656l-82.390625-26.570312v-113.800782zm0 0" fill="#2ed3ff" />
+        <path d="m233.390625 59.46875h16v91h-16zm0 0" fill="#f4b844" />
+        <path d="m233.230469 206.890625.160156 89.847656v.730469h15.917969l-.097656-90.410156zm0 0" fill="#f4b844" />
+        <path d="m241.191406 61.199219c-16.796875.003906-30.410156-13.609375-30.410156-30.402344-.003906-16.792969 13.613281-30.40625 30.40625-30.40625s30.40625 13.617187 30.402344 30.410156c0 16.789063-13.609375 30.398438-30.398438 30.398438zm0 0" fill="#fedb41" />
+        <path d="m241.191406 208.878906c-16.796875.007813-30.417968-13.605468-30.421875-30.402344-.003906-16.796874 13.609375-30.414062 30.40625-30.417968 16.796875 0 30.414063 13.613281 30.414063 30.410156 0 16.792969-13.609375 30.40625-30.398438 30.410156zm0 0" fill="#fedb41" /><path d="m241.308594 295.738281c16.816406.035157 30.429687 13.683594 30.410156 30.5-.015625 16.816407-13.652344 30.441407-30.46875 30.441407s-30.453125-13.625-30.46875-30.441407c-.019531-16.816406 13.59375-30.464843 30.410156-30.5zm0 0" fill="#fedb41" />
+      </svg>
+    );
+  }
+
   const SaveSvg = () => {
     return (
-      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      <svg width="100px" height="100px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
         viewBox="0 0 512 512">
         <g>
           <path fill="#7FDECF" d="M423.358,394.937c-1.499-2.182-3.977-3.487-6.625-3.487h-96.439c-2.551,0-4.95,1.211-6.465,3.262
@@ -443,6 +496,18 @@ function App() {
     );
   }
 
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: '(min-width: 1200px)'
+  })
+
+  const isTabletOrMobileDeviceMax = useMediaQuery({
+    query: '(max-width: 1500px)'
+  })
+
+  const isLgDesktop = useMediaQuery({
+    query: '(min-width: 1501px)'
+  })
+
   return (
     <Container id="app" fluid>
 
@@ -470,32 +535,63 @@ function App() {
               </LeftText>
           </Left>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <TitleForm>Faça seu login</TitleForm>
 
             <TextField
-              style={{ marginTop: 20, width: "80%" }}
+              style={{ marginTop: 20, width: wBtn }}
               label="Email"
               type="email"
               autoComplete="current-email"
               variant="outlined"
+              onChange={handleEmail}
             />
             <TextField
-              style={{ marginTop: 20, width: "80%" }}
+              style={{ marginTop: 20, width: wBtn }}
               label="Senha"
               type="password"
               autoComplete="current-password"
               variant="outlined"
+              onChange={handlePassword}
             />
-            <InputBtn id="btn" type="submit" value="Finalizar" onChange={handleSubmit} />
+            <Button style={{ marginTop: 20, width: wBtn, height: 50, fontSize: 18 }} type="submit" variant="contained" color="secondary">Finalizar</Button>
           </Form>
 
         </Bottom>
 
-        <svg style={{ display: 'flex', marginTop: -350 }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,224L48,202.7C96,181,192,139,288,149.3C384,160,480,224,576,240C672,256,768,224,864,192C960,160,1056,128,1152,138.7C1248,149,1344,203,1392,229.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        {isTabletOrMobileDevice &&
+          <svg id="svg" style={{ marginTop: isTabletOrMobileDeviceMax ? -220 : -350, display: 'flex' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,224L48,202.7C96,181,192,139,288,149.3C384,160,480,224,576,240C672,256,768,224,864,192C960,160,1056,128,1152,138.7C1248,149,1344,203,1392,229.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        }
+
       </Header>
 
-      
+      <Content>
+        <ContentTop>
+          <ContentTitle>Confira nosso serviços</ContentTitle>
+          <ContentSubtitle>Junte-se a nós no nosso Sistema de Gerenciamento feito para pessoas que querem mais organização e agilidade em seu estabelecimento</ContentSubtitle>
+        </ContentTop>
+
+        <ContentBottom>
+
+          <ContentBlock>
+            <HandsSvg />
+            <ContentText>Menos trabalho</ContentText>
+            <ContentSubtext>Em nosso sistema, tudo o que você precisa fazer é cadastrar seus produtos. Nós garantimos todas funcionalidades possíveis, como, Notificação de novos pedidos, Sistema de busca.</ContentSubtext>
+          </ContentBlock>
+
+          <ContentBlock>
+            <OrgSvg />
+            <ContentText>Mais organização</ContentText>
+            <ContentSubtext>Aqui você não se perde, temos tabelas organizadas a seu gosto e em tópicos separados visando a melhor experiência do usuário.</ContentSubtext>
+          </ContentBlock>
+
+          <ContentBlock>
+            <SaveSvg />
+            <ContentText>Você economiza</ContentText>
+            <ContentSubtext>Mais barato que você comprar um site/app, e ainda garantimos 150% de novos clientes com nosso sistema de Marketing.</ContentSubtext>
+          </ContentBlock>
+        </ContentBottom>
+      </Content>
 
 
     </Container>
