@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { h2, color } from './Config';
+import { h2, h3, color, paddingMobile, padding } from './Config';
 
 export const Container = styled.div``;
 
@@ -25,7 +25,9 @@ export const HeaderText = styled.span`
 `;
 
 
-export const SubHeader = styled.div``;
+export const SubHeader = styled.div`
+    margin-bottom: -3px;
+`;
 export const Img = styled.img`
     width: 100%;    
     height: 480px;
@@ -37,14 +39,14 @@ export const DivTitle = styled.div`
 
     @media(max-width: 800px) {
         width: 80%;
-        margin: 0 10% 0 10%;
+        padding: ${paddingMobile};
         top: 40px;
     }
 
     @media(min-width: 801px) {
-        left: 20%;
         top: 110px;
         width: 60%;
+        padding: ${padding}
     }
 `;
 export const Title = styled.span`
@@ -54,8 +56,53 @@ export const Title = styled.span`
 export const SubTitle = styled.span`
     text-align: center;
     color: ${color};
+    margin-top: 10px;
+`;
+
+
+export const WorkWith = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    height: 150px;
 
     @media(max-width: 800px) {
-        margin-top: 10px;
+        height: auto;
+        padding: ${paddingMobile};
+    }
+`;
+export const WorkWithTitle = styled.span`
+    font-size: ${h3};
+    margin-bottom: 10px;
+    text-align: center;
+
+    @media(max-width: 800px) {
+        margin: 15px 0;
+    }
+`;
+export const WorkWithBlock = styled.div`
+    width: 15%;
+
+    @media(max-width: 700px) {
+        padding: ${paddingMobile};
+        width: 80%;
+    }
+
+    @media(min-width: 701px) {
+        display: flex;
+        justify-content: center;
+    }
+
+   
+`;
+export const WorkWithImg = styled.img`
+    width: 100px;
+    height: 80px;
+    margin-left: 10px;
+    
+    @media(max-width: 700px) {
+        width: 100px;
     }
 `;

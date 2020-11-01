@@ -2,10 +2,14 @@ export const h1 = '40px';
 
 export const h2 = '30px';
 
+export const h3 = '25px';
+
 export const span = '20px';
 
 export const wBtn = '80%';
 
 export const color = '#aaa'
 
-export const padding = '100px 0 100px 0'
+export const paddingMobile = '0 10% 0 10%'
+
+export const padding = '0 20% 0 20%';
