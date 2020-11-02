@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { h2, h3, color, paddingMobile, padding } from './Config';
+import { h1, h2, h3, span, color, paddingMobile, padding } from './Config';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+    font-family: roboto;
+`;
 
 
 export const Header = styled.div`
@@ -57,6 +59,7 @@ export const SubTitle = styled.span`
     text-align: center;
     color: ${color};
     margin-top: 10px;
+    font-size: ${span}
 `;
 
 
@@ -94,8 +97,6 @@ export const WorkWithBlock = styled.div`
         display: flex;
         justify-content: center;
     }
-
-   
 `;
 export const WorkWithImg = styled.img`
     width: 100px;
@@ -105,4 +106,53 @@ export const WorkWithImg = styled.img`
     @media(max-width: 700px) {
         width: 100px;
     }
+`;
+
+
+export const WeDo = styled.div`
+    display: grid;
+    grid-gap: 30px;
+    margin: 20px 15px;
+
+    @media(min-width: 300px) {
+        grid-template-columns: auto;
+    }
+
+    @media(min-width: 601px) {
+        grid-template-columns: auto auto;
+    }
+
+    @media(min-width: 1001px) {
+        grid-template-columns: auto auto auto;
+    }
+`;
+export const WeDoTitle = styled.span`
+    font-size: ${h1};
+    text-align: center;
+    
+`;
+export const WeDoBlock = styled.div`
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 #ddd;
+    transition: 200ms;
+
+    :hover {
+        margin-top: -5px;
+        box-shadow: 0 0 15px 0 #aaa;
+    }
+`;
+export const WeDoText = styled.span`
+    font-size: ${h3};
+`;
+export const WeDoSubtext = styled.span`
+    text-align: center;
+    color: ${color};
+    font-size: ${span};
+    margin: 10px 20px;
 `;

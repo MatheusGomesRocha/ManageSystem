@@ -10,6 +10,9 @@ import logo3 from './img/logo3.png';
 import logo4 from './img/logo4.png';
 import logo5 from './img/logo5.png';
 import logo6 from './img/logo6.png';
+import Hands_svg from './svg/hands';
+import { Grid } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 import {
   Container,
@@ -27,9 +30,13 @@ import {
   WorkWithTitle,
   WorkWithBlock,
   WorkWithImg,
+
+  WeDo,
+  WeDoTitle,
+  WeDoBlock,
+  WeDoText,
+  WeDoSubtext,
 } from './AppStyled';
-
-
 
 function App() {
   const [email, setEmail] = useState('');
@@ -74,7 +81,7 @@ function App() {
           <Title>Welcome to SeuMercado official website</Title>
           <SubTitle>
             We are responsible to create and launch your commerce on our App with the purpose to bring
-            more custormes and optimize the orders that your place will receive.
+            more custormes and optimize the orders that your business will receive.
           </SubTitle>
         </DivTitle>
 
@@ -93,7 +100,48 @@ function App() {
         </WorkWithBlock>
       </WorkWith>
 
-    </Container>
+      <WeDo>
+        
+        <WeDoBlock>
+          <Hands_svg />
+          <WeDoText>Organization</WeDoText>
+          <WeDoSubtext>We organize your products and orders the way you want.</WeDoSubtext>
+        </WeDoBlock>
+
+        <WeDoBlock>
+          <Hands_svg />
+          <WeDoText>Notification</WeDoText>
+          <WeDoSubtext>We send a notification warning to your phone or computer with new orders.</WeDoSubtext>
+        </WeDoBlock>
+
+        <WeDoBlock>
+          <Hands_svg />
+          <WeDoText>Management</WeDoText>
+          <WeDoSubtext>You'll have registration system, view users history, cancel new orders.</WeDoSubtext>
+        </WeDoBlock>
+
+        <WeDoBlock>
+          <Hands_svg />
+          <WeDoText>Chat</WeDoText>
+          <WeDoSubtext>We offer a realtime chat so you can talk with your customers and.</WeDoSubtext>
+        </WeDoBlock>
+
+        <WeDoBlock>
+          <Hands_svg />
+          <WeDoText>Rating</WeDoText>
+          <WeDoSubtext>All users who buy anything can rate your business (higher your rating, more we can show your commerce to users).</WeDoSubtext>
+        </WeDoBlock>
+
+        <WeDoBlock>
+          <Hands_svg />
+          <WeDoText>Automation</WeDoText>
+          <WeDoSubtext>We help your businnes gain leverage and efficiency trough smart automation.</WeDoSubtext>
+        </WeDoBlock>
+
+      </WeDo>
+
+
+    </Container >
   );
 }
 

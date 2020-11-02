@@ -1,8 +1,8 @@
 export const h1 = '40px';
 
-export const h2 = '30px';
+export const h2 = '35px';
 
-export const h3 = '25px';
+export const h3 = '30px';
 
 export const span = '20px';
 
