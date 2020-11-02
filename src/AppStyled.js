@@ -6,6 +6,7 @@ export const Container = styled.div`
 `;
 
 
+/** HEADER CONTENT */
 export const Header = styled.div`
     height: 70px;
     display: flex;
@@ -27,6 +28,7 @@ export const HeaderText = styled.span`
 `;
 
 
+/** SUBHEADER CONTENT */
 export const SubHeader = styled.div`
     margin-bottom: -3px;
 `;
@@ -38,6 +40,7 @@ export const DivTitle = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
+    align-items: center;
 
     @media(max-width: 800px) {
         width: 80%;
@@ -63,6 +66,7 @@ export const SubTitle = styled.span`
 `;
 
 
+/* WORK WITH CONTENT */
 export const WorkWith = styled.div`
     display: flex;
     flex-direction: column;
@@ -109,10 +113,21 @@ export const WorkWithImg = styled.img`
 `;
 
 
+/* WE DO CONTENT */
+export const WeDoTitleDiv = styled.div`
+    margin: 100px 0 40px 0;
+    display: flex;
+    justify-content: center;
+`;
+export const WeDoTitle = styled.span`
+    font-size: ${h1};
+    text-align: center;
+    font-weight: bold;
+`;
 export const WeDo = styled.div`
     display: grid;
     grid-gap: 30px;
-    margin: 20px 15px;
+    margin: 50px 15px;
 
     @media(min-width: 300px) {
         grid-template-columns: auto;
@@ -125,11 +140,11 @@ export const WeDo = styled.div`
     @media(min-width: 1001px) {
         grid-template-columns: auto auto auto;
     }
-`;
-export const WeDoTitle = styled.span`
-    font-size: ${h1};
-    text-align: center;
-    
+
+    @media(min-width: 1501px) {
+        justify-content: center;
+        margin-bottom: 100px;
+    }
 `;
 export const WeDoBlock = styled.div`
     height: 350px;
@@ -146,13 +161,79 @@ export const WeDoBlock = styled.div`
         margin-top: -5px;
         box-shadow: 0 0 15px 0 #aaa;
     }
+
+    @media(min-width: 1501px) {
+        width: 350px;
+    }
 `;
 export const WeDoText = styled.span`
     font-size: ${h3};
+    margin: 10px 0;
 `;
 export const WeDoSubtext = styled.span`
     text-align: center;
     color: ${color};
     font-size: ${span};
     margin: 10px 20px;
+`;
+
+
+/** PRICE CONTENT */
+export const Price = styled.div`
+    display: flex;
+    background-color: #eee;
+    align-items: center;
+
+    @media(max-width: 600px) {
+        flex-direction: column;
+        padding: 50px 10%;
+    }
+
+    @media(min-width: 601px) {
+        padding: ${padding};
+    }
+
+    @media(min-width: 765px) {
+        padding: 20px 50px;
+    }
+
+    @media(min-width: 900px) {
+        padding: ${padding}
+    }
+
+    @media(min-width: 1500px) {
+        justify-content: center;
+    }
+`;
+export const PriceBlock = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media(max-width: 601px) {
+        margin-bottom: 50px;
+    }
+
+    @media(min-width: 1500px) {
+        width: 25%;
+    }
+`;
+export const PriceTitle = styled.span`
+    font-size: 45px;
+
+    @media(max-width: 600px) {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+`;
+export const PriceText = styled.span`
+    color: ${color};
+    font-size: ${span};
+    width: 70%;
+    margin-top: 15px;
+
+    @media(max-width: 601px) {
+        width: 100%;
+        text-align: center;
+    }
 `;
