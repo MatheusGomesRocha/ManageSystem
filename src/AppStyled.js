@@ -12,7 +12,7 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    background-color: #000;
 
     @media(max-width: 800px) {
         display: none;
@@ -21,7 +21,8 @@ export const Header = styled.div`
 export const HeaderText = styled.span`
     font-size: ${h2};
     margin-left: 20%;
-
+    color: #fff;
+    
     @media(min-width: 1501px) {
         margin-left: 25%;
     }
@@ -30,7 +31,13 @@ export const HeaderText = styled.span`
 
 /** SUBHEADER CONTENT */
 export const SubHeader = styled.div`
-    margin-bottom: -3px;
+    margin-bottom: -5px;
+`;
+export const BgDiv = styled.div`
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 480px;
 `;
 export const Img = styled.img`
     width: 100%;    
@@ -56,7 +63,8 @@ export const DivTitle = styled.div`
 `;
 export const Title = styled.span`
     text-align: center;
-    font-size: ${h2}
+    font-size: ${h2};
+    color: #fff;
 `;
 export const SubTitle = styled.span`
     text-align: center;
@@ -72,8 +80,8 @@ export const WorkWith = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #eee;
-    height: 150px;
+    background-color: #333;
+    min-height: 200px;
 
     @media(max-width: 800px) {
         height: auto;
@@ -84,6 +92,7 @@ export const WorkWithTitle = styled.span`
     font-size: ${h3};
     margin-bottom: 10px;
     text-align: center;
+    color: #fff;
 
     @media(max-width: 800px) {
         margin: 15px 0;
@@ -106,6 +115,7 @@ export const WorkWithImg = styled.img`
     width: 100px;
     height: 80px;
     margin-left: 10px;
+    background-color: #fff;
     
     @media(max-width: 700px) {
         width: 100px;
@@ -115,19 +125,22 @@ export const WorkWithImg = styled.img`
 
 /* WE DO CONTENT */
 export const WeDoTitleDiv = styled.div`
-    margin: 100px 0 40px 0;
+    background-color: #000;
     display: flex;
     justify-content: center;
+    padding: 100px 0 20px 0;
 `;
 export const WeDoTitle = styled.span`
     font-size: ${h1};
     text-align: center;
     font-weight: bold;
+    color: #fff;
 `;
 export const WeDo = styled.div`
+    background-color: #000;
     display: grid;
     grid-gap: 30px;
-    margin: 50px 15px;
+    padding: 50px 15px;
 
     @media(min-width: 300px) {
         grid-template-columns: auto;
@@ -143,7 +156,7 @@ export const WeDo = styled.div`
 
     @media(min-width: 1501px) {
         justify-content: center;
-        margin-bottom: 100px;
+        padding-bottom: 100px;
     }
 `;
 export const WeDoBlock = styled.div`
@@ -169,6 +182,7 @@ export const WeDoBlock = styled.div`
 export const WeDoText = styled.span`
     font-size: ${h3};
     margin: 10px 0;
+    color: #fff;
 `;
 export const WeDoSubtext = styled.span`
     text-align: center;
@@ -181,7 +195,7 @@ export const WeDoSubtext = styled.span`
 /** PRICE CONTENT */
 export const Price = styled.div`
     display: flex;
-    background-color: #eee;
+    background-color: #333;
     align-items: center;
 
     @media(max-width: 600px) {
@@ -198,10 +212,11 @@ export const Price = styled.div`
     }
 
     @media(min-width: 900px) {
-        padding: ${padding}
+        padding: 20px 10%;
     }
 
     @media(min-width: 1500px) {
+        padding: 20px 0;
         justify-content: center;
     }
 `;
@@ -220,6 +235,7 @@ export const PriceBlock = styled.div`
 `;
 export const PriceTitle = styled.span`
     font-size: 45px;
+    color: #fff;
 
     @media(max-width: 600px) {
         text-align: center;
@@ -237,3 +253,11 @@ export const PriceText = styled.span`
         text-align: center;
     }
 `;
+
+
+/** FORM CONTENT */
+export const FormDiv = styled.div``;
+export const FormBlock = styled.div``;
+export const FormTitle = styled.span``;
+export const FormText = styled.span``;
+export const Form = styled.form``;

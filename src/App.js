@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 import bg_img from './img/city.jpg';
 import logo1 from './img/logo1.png';
@@ -24,6 +25,7 @@ import {
   HeaderText,
 
   SubHeader,
+  BgDiv,
   Img,
   DivTitle,
   Title,
@@ -45,6 +47,12 @@ import {
   PriceBlock,
   PriceTitle,
   PriceText,
+
+  FormDiv,
+  FormBlock,
+  FormTitle,
+  FormText,
+  Form,
 } from './AppStyled';
 
 function App() {
@@ -88,7 +96,8 @@ function App() {
 
       {/* SUBHEADER CONTENT */}
       <SubHeader>
-
+        <BgDiv></BgDiv>
+        
         <DivTitle>
           <Title>Welcome to SeuMercado official website</Title>
           <SubTitle>
@@ -165,12 +174,42 @@ function App() {
         <PriceBlock>
           <PriceTitle>Don't worry about pricing</PriceTitle>
           <PriceText>
-            We have the lowest price on the market, and we will be happy to help you. We have the lowest price on the market and we will be happy to serve you. And if that’s not enough, you have 1 month free trial
+            We have 3 plans to shop our system, 1/3/6 months and the higher your plan, more we can offer new functions, we are the lowest price on the market, and we will be happy to help you. And if that’s not enough, you have 1 month free trial.
           </PriceText>
         </PriceBlock>
         <ChillSvg />
       </Price>
 
+      {/** FORM CONTENT */}
+      <FormDiv>
+        <FormBlock>
+          <FormTitle>Contact us</FormTitle>
+          <FormText>
+            Do you have any questions? please fill out the form and feel free to ask whatever you want.
+          </FormText>
+        </FormBlock>
+
+        <Form>
+          <TextField
+            id="outlined-password-input"
+            label="Seu email"
+            type="email"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined-password-input"
+            label="Dúvida"
+            type="text"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined-password-input"
+            label="Mensagem"
+            type="text"
+            variant="outlined"
+          />
+        </Form>
+      </FormDiv>
 
     </Container >
   );
