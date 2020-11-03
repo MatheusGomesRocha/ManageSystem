@@ -1,19 +1,33 @@
 import styled from 'styled-components';
 import { h1, h2, h3, span, color, paddingMobile, padding } from './Config';
+import bg_img from './img/pc1.jpg';
 
 export const Container = styled.div`
     font-family: roboto;
-    background-color: #7844B2;
 `;
 
 
 /** HEADER CONTENT */
 export const Header = styled.div`
-    height: 70px;
+    background-image: url(${bg_img});
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media(max-width: 800px) {
+        justify-content: center;
+    }
+`;
+export const DivHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
-   
+    padding-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+
     @media(max-width: 800px) {
         display: none;
     }
@@ -30,51 +44,20 @@ export const HeaderText = styled.span`
 
 
 /** SUBHEADER CONTENT */
-export const SubHeader = styled.div`
-    margin-bottom: -5px;
-`;
-export const BgDiv = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 800px;
-    background-color: rgba(0, 0, 0, 0.2);
-
-    @media(min-width: 300px) and (max-width: 700px) {
-        height: 400px;
-    }
-
-    @media(min-width: 701px) and (max-width: 1000px) {
-        height: 600px;
-    }
-`;
-export const Img = styled.img`
-    width: 100%;   
-    height: 800px;
-    
-
-    @media(min-width: 300px) and (max-width: 700px) {
-        height: 400px;
-    }
-
-    @media(min-width: 701px) and (max-width: 1000px) {
-        height: 600px;
-    }
-`;
 export const DivTitle = styled.div`
     display: flex;
     flex-direction: column;
-    position: absolute;
     align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
 
     @media(min-width: 300px) and (max-width: 800px) {
-        width: 80%;
-        padding: ${paddingMobile};
+        padding: ${paddingMobile}
         top: 40px;
     }
 
     @media(min-width: 801px) {
-        top: 200px;
-        width: 70%;
         padding: 0 15%;
     }
 `;
@@ -82,73 +65,64 @@ export const Title = styled.span`
     text-align: center;
     font-size: ${h1};
     color: #fff;
+    margin-bottom: 20px;
+
+    @media(min-width: 300px) and (max-width: 800px) {
+        width: 90%;
+    }
 `;
 export const SubTitle = styled.span`
     text-align: center;
     color: ${color};
     margin-top: 10px;
-    font-size: ${span}
+    font-size: ${span};
+
+    @media(min-width: 300px) and (max-width: 800px) {
+        width: 90%;
+    }
 `;
 
 
-/* WORK WITH CONTENT */
-export const WorkWith = styled.div`
+/* WHO WE ARE CONTENT */
+export const WhoAre = styled.div`
+    height: 400px;
+    background-color: #7851A9;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 200px;
-
-    @media(max-width: 800px) {
-        height: auto;
-        padding: ${paddingMobile};
-    }
+    align-items: center;
+    padding: 0 20%;
 `;
-export const WorkWithTitle = styled.span`
-    font-size: ${h3};
-    margin-bottom: 10px;
-    text-align: center;
+export const WhoAreTitle = styled.span`
+    font-size: ${h1};
     color: #fff;
-
-    @media(max-width: 800px) {
-        margin: 15px 0;
-    }
 `;
-export const WorkWithBlock = styled.div`
-    width: 15%;
-
-    @media(max-width: 700px) {
-        padding: ${paddingMobile};
-        width: 80%;
-    }
-
-    @media(min-width: 701px) {
-        display: flex;
-        justify-content: center;
-    }
+export const LineDiv = styled.div`
+    width: 10%;
+    height: 2px;
+    background-color: ${props=>props.color || '#fff'};
+    margin-top: 5px;
 `;
-export const WorkWithImg = styled.img`
-    width: 100px;
-    height: 80px;
-    margin-left: 10px;
-    
-    @media(max-width: 700px) {
-        width: 100px;
-    }
+export const WhoAreText = styled.span`
+    font-size: ${span};
+    color: #fff;
+    margin-top: 20px;
+    text-align: center;
 `;
 
 
 /* WE DO CONTENT */
 export const WeDoTitleDiv = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding-top: 100px;
 `;
 export const WeDoTitle = styled.span`
     font-size: ${h1};
     text-align: center;
     font-weight: bold;
-    color: #fff;
 `;
 export const WeDo = styled.div`
     display: grid;
@@ -178,15 +152,15 @@ export const WeDoBlock = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000;
+    border: 1px solid #7851A9;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 #000;
+    box-shadow: 0 0 5px 0 #7851A9;
     transition: 200ms;
-	background-color: #000;
+	background-color: #7851A9;
 
     :hover {
         margin-top: -5px;
-        box-shadow: 0 0 15px 0 #000;
+        box-shadow: 0 0 15px 0 #7851A9;
     }
 
     @media(min-width: 1501px) {
@@ -196,11 +170,11 @@ export const WeDoBlock = styled.div`
 export const WeDoText = styled.span`
     font-size: ${h3};
     margin: 10px 0;
-	color: #7851A9;
+	color: #fff;
 `;
 export const WeDoSubtext = styled.span`
     text-align: center;
-    color: #7851A9;
+    color: #fff;
     font-size: ${span};
     margin: 10px 20px;
 `;
@@ -209,8 +183,6 @@ export const WeDoSubtext = styled.span`
 /** PRICE CONTENT */
 export const Price = styled.div`
     display: flex;
-	background-color: #000;
-    
     align-items: center;
 
     @media(max-width: 600px) {
@@ -250,7 +222,6 @@ export const PriceBlock = styled.div`
 `;
 export const PriceTitle = styled.span`
     font-size: 45px;
-    color: #7851A9;
 
     @media(max-width: 600px) {
         text-align: center;
@@ -258,7 +229,6 @@ export const PriceTitle = styled.span`
     }
 `;
 export const PriceText = styled.span`
-    color: #7851A9;
     font-size: ${span};
     width: 70%;
     margin-top: 15px;
