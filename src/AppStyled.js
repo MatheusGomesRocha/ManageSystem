@@ -3,6 +3,7 @@ import { h1, h2, h3, span, color, paddingMobile, padding } from './Config';
 
 export const Container = styled.div`
     font-family: roboto;
+    background-color: #7844B2;
 `;
 
 
@@ -12,8 +13,7 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #000;
-
+   
     @media(max-width: 800px) {
         display: none;
     }
@@ -34,14 +34,31 @@ export const SubHeader = styled.div`
     margin-bottom: -5px;
 `;
 export const BgDiv = styled.div`
-    background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     width: 100%;
-    height: 480px;
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    @media(min-width: 300px) and (max-width: 700px) {
+        height: 400px;
+    }
+
+    @media(min-width: 701px) and (max-width: 1000px) {
+        height: 600px;
+    }
 `;
 export const Img = styled.img`
-    width: 100%;    
-    height: 480px;
+    width: 100%;   
+    height: 800px;
+    
+
+    @media(min-width: 300px) and (max-width: 700px) {
+        height: 400px;
+    }
+
+    @media(min-width: 701px) and (max-width: 1000px) {
+        height: 600px;
+    }
 `;
 export const DivTitle = styled.div`
     display: flex;
@@ -49,21 +66,21 @@ export const DivTitle = styled.div`
     position: absolute;
     align-items: center;
 
-    @media(max-width: 800px) {
+    @media(min-width: 300px) and (max-width: 800px) {
         width: 80%;
         padding: ${paddingMobile};
         top: 40px;
     }
 
     @media(min-width: 801px) {
-        top: 110px;
-        width: 60%;
-        padding: ${padding}
+        top: 200px;
+        width: 70%;
+        padding: 0 15%;
     }
 `;
 export const Title = styled.span`
     text-align: center;
-    font-size: ${h2};
+    font-size: ${h1};
     color: #fff;
 `;
 export const SubTitle = styled.span`
@@ -80,7 +97,6 @@ export const WorkWith = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #333;
     min-height: 200px;
 
     @media(max-width: 800px) {
@@ -115,7 +131,6 @@ export const WorkWithImg = styled.img`
     width: 100px;
     height: 80px;
     margin-left: 10px;
-    background-color: #fff;
     
     @media(max-width: 700px) {
         width: 100px;
@@ -125,10 +140,9 @@ export const WorkWithImg = styled.img`
 
 /* WE DO CONTENT */
 export const WeDoTitleDiv = styled.div`
-    background-color: #000;
     display: flex;
     justify-content: center;
-    padding: 100px 0 20px 0;
+    padding-top: 100px;
 `;
 export const WeDoTitle = styled.span`
     font-size: ${h1};
@@ -137,10 +151,9 @@ export const WeDoTitle = styled.span`
     color: #fff;
 `;
 export const WeDo = styled.div`
-    background-color: #000;
     display: grid;
     grid-gap: 30px;
-    padding: 50px 15px;
+    padding: 40px 15px;
 
     @media(min-width: 300px) {
         grid-template-columns: auto;
@@ -165,14 +178,15 @@ export const WeDoBlock = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd;
+    border: 1px solid #000;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 #ddd;
+    box-shadow: 0 0 5px 0 #000;
     transition: 200ms;
+	background-color: #000;
 
     :hover {
         margin-top: -5px;
-        box-shadow: 0 0 15px 0 #aaa;
+        box-shadow: 0 0 15px 0 #000;
     }
 
     @media(min-width: 1501px) {
@@ -182,11 +196,11 @@ export const WeDoBlock = styled.div`
 export const WeDoText = styled.span`
     font-size: ${h3};
     margin: 10px 0;
-    color: #fff;
+	color: #7851A9;
 `;
 export const WeDoSubtext = styled.span`
     text-align: center;
-    color: ${color};
+    color: #7851A9;
     font-size: ${span};
     margin: 10px 20px;
 `;
@@ -195,7 +209,8 @@ export const WeDoSubtext = styled.span`
 /** PRICE CONTENT */
 export const Price = styled.div`
     display: flex;
-    background-color: #333;
+	background-color: #000;
+    
     align-items: center;
 
     @media(max-width: 600px) {
@@ -235,7 +250,7 @@ export const PriceBlock = styled.div`
 `;
 export const PriceTitle = styled.span`
     font-size: 45px;
-    color: #fff;
+    color: #7851A9;
 
     @media(max-width: 600px) {
         text-align: center;
@@ -243,7 +258,7 @@ export const PriceTitle = styled.span`
     }
 `;
 export const PriceText = styled.span`
-    color: ${color};
+    color: #7851A9;
     font-size: ${span};
     width: 70%;
     margin-top: 15px;
