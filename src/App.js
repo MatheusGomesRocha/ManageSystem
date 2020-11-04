@@ -51,6 +51,9 @@ import {
   FormTitle,
   FormText,
   Form,
+  FormPurple,
+
+  Footer,
 } from './AppStyled';
 
 function App() {
@@ -68,6 +71,10 @@ function App() {
   const handleSubmit = () => {
     console.log(email, password)
   }
+
+  const isMobileDevice = useMediaQuery({
+    query: '(max-width: 750px)'
+  })
 
   const isTabletOrMobileDevice = useMediaQuery({
     query: '(min-width: 1200px)'
@@ -87,7 +94,7 @@ function App() {
       <Header>
         <DivHeader>
           <HeaderText>SeuMercado</HeaderText>
-          <Button style={{borderRadius: 20, backgroundColor: '#7851A9', color: '#fff', height: 40, padding: 20, fontSize: 15, marginRight: isLgDesktop ? '25%' : '20%' }} variant="contained">
+          <Button style={{ borderRadius: 20, backgroundColor: '#7851A9', color: '#fff', height: 40, padding: 20, fontSize: 15, marginRight: isLgDesktop ? '25%' : '20%' }} variant="contained">
             Buy Now
           </Button>
         </DivHeader>
@@ -113,9 +120,9 @@ function App() {
         <WhoAreTitle>Who we are</WhoAreTitle>
         <LineDiv></LineDiv>
         <WhoAreText>
-          We are a startup focused on helping other small businesses to level up, bringing more customers and giving a system that is capable of automating your commerce, you will do almost nothing, you just need to register new products and help answer question if a customer has one
+          We are a startup focused on helping other small businesses to level up, bringing more customers and giving a system that is capable of automating your commerce, you will do almost nothing, you just need to register new products and help answer question if a customer has one and we are responsible to do everything that is important, to you.
         </WhoAreText>
-        <Button style={{borderRadius: 20, fontFamily: 'arial', height: 40, padding: 20, marginTop: 20, fontSize: 15}} variant="contained">
+        <Button style={{ backgroundColor: '#fff', borderRadius: 20, fontFamily: 'arial', height: 40, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained">
           Buy Now
         </Button>
       </WhoAre>
@@ -166,6 +173,8 @@ function App() {
 
       </WeDo>
 
+      <LineDiv color="#ddd" style={{width: '100%'}}></LineDiv>
+
       {/* DONT WORRY ABOUT PRICING CONTENT */}
       <Price>
         <PriceBlock>
@@ -174,37 +183,57 @@ function App() {
             We have 3 plans, 1/3/6 months and the higher your plan, more we can offer new functions, we are the lowest price on the market, and we will be happy to help you. And if that’s not enough, you have 1 month free trial.
           </PriceText>
         </PriceBlock>
-        <ChillSvg />
+
+        <ChillSvg width={isMobileDevice ? '300px' : '400px'} height={isMobileDevice ? '300px' : '400px'}/>
       </Price>
+
+      <LineDiv color="#ddd" style={{width: '100%'}}></LineDiv>
 
       {/** FORM CONTENT */}
       <FormDiv>
+
         <FormBlock>
           <FormTitle>Talk do us</FormTitle>
           <FormText>
             Do you have any questions? please fill out the form and feel free to ask whatever you want.
-            </FormText>
+          </FormText>
         </FormBlock>
 
         <Form>
+          <FormTitle>Contact Us</FormTitle>
+          <FormText style={{marginBottom: 10}}>We answer all yours questions</FormText>
           <TextField
-            label="Nome*"
+          style={{width: '100%', marginTop: 10,}}
+            label="Full Name*"
             type="email"
             variant="outlined"
           />
           <TextField
+          style={{width: '100%', marginTop: 10,}}
             label="Email*"
             type="text"
             variant="outlined"
           />
           <TextField
-            label="Mensagem*"
+          style={{width: '100%', marginTop: 10,}}
+            label="Message*"
             type="text"
             variant="outlined"
           />
+          <Button type="submit" style={{ borderRadius: 20, backgroundColor: '#7851A9', color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained">
+            Send Message
+          </Button>
         </Form>
+
       </FormDiv>
-    </Container >
+      
+      <FormPurple></FormPurple>
+
+      <Footer>
+
+      </Footer>
+
+    </Container>
   );
 }
 

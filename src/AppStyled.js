@@ -92,15 +92,19 @@ export const WhoAre = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 20%;
+
+    @media(max-width: 700px) {
+        padding: 20%;
+    }
 `;
 export const WhoAreTitle = styled.span`
     font-size: ${h1};
     color: #fff;
 `;
 export const LineDiv = styled.div`
-    width: 10%;
+    width: 50px;
     height: 2px;
-    background-color: ${props=>props.color || '#fff'};
+    background-color: ${props => props.color || '#fff'};
     margin-top: 5px;
 `;
 export const WhoAreText = styled.span`
@@ -183,19 +187,17 @@ export const WeDoSubtext = styled.span`
 /** PRICE CONTENT */
 export const Price = styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
-
-    @media(max-width: 600px) {
+    
+    @media(max-width: 800px) {
         flex-direction: column;
-        padding: 50px 10%;
+        padding: 20px 10%;
     }
 
-    @media(min-width: 601px) {
+    @media(min-width: 801px) {
         padding: ${padding};
-    }
-
-    @media(min-width: 765px) {
-        padding: 20px 50px;
+        grid-template-columns: auto auto;
     }
 
     @media(min-width: 900px) {
@@ -208,9 +210,10 @@ export const Price = styled.div`
     }
 `;
 export const PriceBlock = styled.div`
-    width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    width: 100%;
 
     @media(max-width: 601px) {
         margin-bottom: 50px;
@@ -223,17 +226,17 @@ export const PriceBlock = styled.div`
 export const PriceTitle = styled.span`
     font-size: 45px;
 
-    @media(max-width: 600px) {
-        text-align: center;
+    @media(max-width: 800px) {
         margin-bottom: 10px;
+        text-align: center;
     }
 `;
 export const PriceText = styled.span`
     font-size: ${span};
-    width: 70%;
+    width: 50%;
     margin-top: 15px;
 
-    @media(max-width: 601px) {
+    @media(max-width: 801px) {
         width: 100%;
         text-align: center;
     }
@@ -241,8 +244,71 @@ export const PriceText = styled.span`
 
 
 /** FORM CONTENT */
-export const FormDiv = styled.div``;
-export const FormBlock = styled.div``;
-export const FormTitle = styled.span``;
-export const FormText = styled.span``;
-export const Form = styled.form``;
+export const FormDiv = styled.div`
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 50px;
+
+    @media(max-width: 800px) {
+        margin-top: 100px;
+        flex-direction: column;
+    }
+`;
+export const FormBlock = styled.div`
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+
+    @media(max-width: 800px) {
+        width: 90%;
+        margin-bottom: -150px;
+    }
+`;
+export const FormTitle = styled.span`
+    font-size: ${h1};
+    text-align: center;
+`;
+export const FormText = styled.span`
+    font-size: ${span};
+    color: ${color};
+    text-align: center;
+`;
+export const Form = styled.form`
+    padding: 0 5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 #ddd;
+    background-color: #fff;
+    transition: 200ms;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 400px;
+    margin-top: 100px;
+
+    :hover {
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px 0 #ddd;
+    }
+
+    @media(max-width: 800px) {
+        width: 70%;
+        padding: 5% 10%;
+        margin-top: 200px;
+    }
+`;
+export const FormPurple = styled.div`
+    height: 200px;
+    background-color: #7851A9;
+`;
+
+
+/** FOOTER AREA */
+export const Footer = styled.div`
+    height: 600px;
+    background-color: #452E60;
+`;
