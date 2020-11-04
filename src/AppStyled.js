@@ -94,7 +94,7 @@ export const WhoAre = styled.div`
     padding: 0 20%;
 
     @media(max-width: 700px) {
-        padding: 20%;
+        padding: 20% 10%;
     }
 `;
 export const WhoAreTitle = styled.span`
@@ -260,6 +260,7 @@ export const FormBlock = styled.div`
     width: 40%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     @media(max-width: 800px) {
         width: 90%;
@@ -274,6 +275,7 @@ export const FormText = styled.span`
     font-size: ${span};
     color: ${color};
     text-align: center;
+    margin-top: 15px;
 `;
 export const Form = styled.form`
     padding: 0 5%;
@@ -309,6 +311,57 @@ export const FormPurple = styled.div`
 
 /** FOOTER AREA */
 export const Footer = styled.div`
-    height: 600px;
+    min-height: 300px;
     background-color: #452E60;
+    display: flex;
+
+    @media(max-width: 750px) {
+        display: grid;
+        flex-direction: column;
+        grid-template-columns: auto auto;
+        padding: 30px 10%;
+    }
+
+    @media(min-width: 751px) {
+        align-items: center;
+        justify-content: center; 
+    }
+`;
+export const ContactBlock = styled.div`
+    @media(max-width: 750px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #452E60;
+        padding: 15px;
+    }
+`;
+export const ContactText = styled.span`
+    color: #fff;
+    font-size: ${h3};
+`;
+export const ContactLink = styled.div`
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+`;
+export const FooterBlock = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 25px;
+    min-height: 150px;
+
+    @media(max-width: 750px) {
+        margin-bottom: 30px;
+    }
+`;
+export const FooterTitle = styled.span`
+    color: #fff;
+    font-size: ${h3};
+`;
+export const FooterLink = styled.a`
+    color: ${color};
+    text-decoration: none;
+    margin-top: 10px;
 `;
