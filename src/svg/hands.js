@@ -1,4 +1,4 @@
-export default () => {
+export default function Hands () {
     return (
         <svg width="100px" height="100px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             viewBox="0 0 512.002 512.002"  >
