@@ -10,9 +10,6 @@ import NotificationSvg from './svg/notification';
 import OrganizationSvg from './svg/organization';
 import RateSvg from './svg/rate';
 import ChillSvg from './svg/chill';
-import FaceSvg from './svg/facebook';
-import InstaSvg from './svg/instagram';
-import LinkedinSvg from './svg/linkedin';
 
 import {
   Container,
@@ -73,27 +70,15 @@ function App() {
 
   const isMobileDevice = useMediaQuery({
     query: '(max-width: 750px)'
-  })
-
-  const isMdDevice = useMediaQuery({
-    query: '(min-width: 751px)'
-  })
-
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: '(min-width: 1200px)'
-  })
-
-  const isTabletOrMobileDeviceMax = useMediaQuery({
-    query: '(max-width: 1500px)'
-  })
+  });
 
   const isLgDesktop = useMediaQuery({
     query: '(min-width: 1501px)'
-  })
-  
+  });
+
   useEffect(() => {
-    const handleScroll = () => { 
-      if(document.documentElement.scrollTop > 0) {
+    const handleScroll = () => {
+      if (document.documentElement.scrollTop > 0) {
         setBgHeader('#fff');
         setColorHeader('#000');
         setTransition('1s');
@@ -105,18 +90,17 @@ function App() {
 
     window.onscroll = () => handleScroll();
     console.log(bgHeader);
-  }, [])
+  }, []);
 
-  return (  
-    <Container>
-      {/* HEADER CONTENT */}
+  const HeaderContent = () => {
+    return (
       <Header>
 
-        <DivHeader style={{transition: transition}} bgHeader={bgHeader}>
-          <HeaderText style={{transition: transition, color: colorHeader}} >SeuMercado</HeaderText>
+        <DivHeader style={{ transition: transition }} bgHeader={bgHeader}>
+          <HeaderText style={{ transition: transition, color: colorHeader }} >SeuMercado</HeaderText>
           <HeaderBlock>
-            <HeaderLink href="#" style={{transition: transition, color: colorHeader}}>Portfolio</HeaderLink>
-            <HeaderLink href="#" style={{transition: transition, color: colorHeader}}>Employees</HeaderLink>
+            <HeaderLink href="#" style={{ transition: transition, color: colorHeader }}>Portfolio</HeaderLink>
+            <HeaderLink href="#" style={{ transition: transition, color: colorHeader }}>Employees</HeaderLink>
             <Button style={{ borderRadius: 20, backgroundColor: '#7851A9', color: '#fff', height: isMobileDevice ? 50 : 40, padding: 20, fontSize: 15, marginRight: isLgDesktop ? '25%' : '20%' }} variant="contained">
               Buy Now
           </Button>
@@ -135,29 +119,26 @@ function App() {
           </Button>
         </DivTitle>
       </Header>
+    );
+  }
 
-      {/* SUBHEADER CONTENT */}
-
-
-      {/* WHO WE ARE CONTENT*/}
-
+  const WhoWeAreContent = () => {
+    return (
       <WhoAre>
         <WhoAreTitle>Who we are</WhoAreTitle>
         <LineDiv></LineDiv>
         <WhoAreText>
           We are a startup focused on helping other small businesses to level up, bringing more customers and giving a system that is capable of automating your commerce, you will do almost nothing, you just need to register new products and help answer question if a customer has one and we are responsible to do everything that is important, to you.
-        </WhoAreText>
+      </WhoAreText>
         <Button style={{ backgroundColor: '#fff', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained">
           Buy Now
-        </Button>
+      </Button>
       </WhoAre>
+    );
+  }
 
-
-      {/* WHAT WE DO CONTENT */}
-      <WeDoTitleDiv>
-        <WeDoTitle>What we do</WeDoTitle>
-        <LineDiv color="#000"></LineDiv>
-      </WeDoTitleDiv>
+  const WhatWeDoContent = () => {
+    return (
       <WeDo>
 
         <WeDoBlock>
@@ -197,10 +178,11 @@ function App() {
         </WeDoBlock>
 
       </WeDo>
+    );
+  }
 
-      <LineDiv color="#ddd" style={{ width: '100%' }}></LineDiv>
-
-      {/* DONT WORRY ABOUT PRICING CONTENT */}
+  const PriceContent = () => {
+    return (
       <Price>
         <PriceBlock>
           <PriceTitle>Don't worry about pricing</PriceTitle>
@@ -211,10 +193,11 @@ function App() {
 
         <ChillSvg width={isMobileDevice ? '300px' : '400px'} height={isMobileDevice ? '300px' : '400px'} />
       </Price>
+    );
+  }
 
-      <LineDiv color="#ddd" style={{ width: '100%' }}></LineDiv>
-
-      {/** FORM CONTENT */}
+  const FormContent = () => {
+    return (
       <FormDiv>
 
         <FormBlock>
@@ -254,6 +237,41 @@ function App() {
         </Form>
 
       </FormDiv>
+    );
+  }
+
+
+  return (
+    <Container>
+
+      <HeaderContent />
+
+      {/* SUBHEADER CONTENT */}
+
+      <WhoWeAreContent />
+      {/* WHO WE ARE CONTENT*/}
+
+
+
+      {/* WHAT WE DO CONTENT */}
+      <WeDoTitleDiv>
+        <WeDoTitle>What we do</WeDoTitle>
+        <LineDiv color="#000"></LineDiv>
+      </WeDoTitleDiv>
+
+      <WhatWeDoContent />
+
+      <LineDiv color="#ddd" style={{ width: '100%' }}></LineDiv>
+
+      {/* DONT WORRY ABOUT PRICING CONTENT */}
+
+      <PriceContent />
+
+      <LineDiv color="#ddd" style={{ width: '100%' }}></LineDiv>
+
+      {/** FORM CONTENT */}
+
+      <FormContent />
       <FormPurple></FormPurple>
 
     </Container>

@@ -44,14 +44,12 @@ export const HeaderBlock = styled.div`
 export const HeaderText = styled.span`
     font-size: ${h2};
     margin-left: 20%;
-    color: ${props=>props.colorHeader};
 
     @media(min-width: 1501px) {
         margin-left: 25%;
     }
 `;
 export const HeaderLink = styled.a`
-    color: ${props=>props.colorHeader || '#fff'};
     text-decoration: none;
     font-size: ${span};
     margin-right: 20px;
