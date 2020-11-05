@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Button } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
@@ -19,6 +19,8 @@ import {
 
   Header,
   HeaderText,
+  HeaderBlock,
+  HeaderLink,
 
   DivHeader,
   DivTitle,
@@ -48,19 +50,14 @@ import {
   FormText,
   Form,
   FormPurple,
-
-  Footer,
-  ContactBlock,
-  ContactText,
-  ContactLink,
-  FooterBlock,
-  FooterTitle,
-  FooterLink,
 } from './AppStyled';
 
 function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [bgHeader, setBgHeader] = useState('');
+  const [colorHeader, setColorHeader] = useState('#fff');
+  const [transition, setTransition] = useState('');
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -93,16 +90,38 @@ function App() {
   const isLgDesktop = useMediaQuery({
     query: '(min-width: 1501px)'
   })
+  
+  useEffect(() => {
+    const handleScroll = () => { 
+      if(document.documentElement.scrollTop > 0) {
+        setBgHeader('#fff');
+        setColorHeader('#000');
+        setTransition('1s');
+      } else {
+        setBgHeader('transparent');
+        setColorHeader('#fff');
+      }
+    }
 
-  return (
+    window.onscroll = () => handleScroll();
+    console.log(bgHeader);
+  }, [])
+
+  return (  
     <Container>
       {/* HEADER CONTENT */}
       <Header>
-        <DivHeader>
-          <HeaderText>SeuMercado</HeaderText>
-          <Button style={{ borderRadius: 20, backgroundColor: '#7851A9', color: '#fff', height: isMobileDevice ? 50 : 40, padding: 20, fontSize: 15, marginRight: isLgDesktop ? '25%' : '20%' }} variant="contained">
-            Buy Now
+
+        <DivHeader style={{transition: transition}} bgHeader={bgHeader}>
+          <HeaderText style={{transition: transition, color: colorHeader}} >SeuMercado</HeaderText>
+          <HeaderBlock>
+            <HeaderLink href="#" style={{transition: transition, color: colorHeader}}>Portfolio</HeaderLink>
+            <HeaderLink href="#" style={{transition: transition, color: colorHeader}}>Employees</HeaderLink>
+            <Button style={{ borderRadius: 20, backgroundColor: '#7851A9', color: '#fff', height: isMobileDevice ? 50 : 40, padding: 20, fontSize: 15, marginRight: isLgDesktop ? '25%' : '20%' }} variant="contained">
+              Buy Now
           </Button>
+          </HeaderBlock>
+
         </DivHeader>
 
         <DivTitle>
@@ -235,68 +254,7 @@ function App() {
         </Form>
 
       </FormDiv>
-
       <FormPurple></FormPurple>
-
-      {isMobileDevice &&
-          <ContactBlock>
-            <ContactText>SeuMercado</ContactText>
-            <ContactLink >
-              <FaceSvg left={10}/>
-              <InstaSvg left={10}/>
-              <LinkedinSvg left={10}/>
-            </ContactLink>
-          </ContactBlock>
-        }
-
-      <Footer>
-        {isMdDevice &&
-          <ContactBlock>
-            <ContactText>SeuMercado</ContactText>
-            <ContactLink>
-              <FaceSvg />
-              <InstaSvg />
-              <LinkedinSvg />
-            </ContactLink>
-          </ContactBlock>
-        }
-
-        <FooterBlock>
-          <FooterTitle>Workers</FooterTitle>
-          <LineDiv></LineDiv>
-          <FooterLink href="#">Matheus</FooterLink>
-          <FooterLink href="#">Jhon</FooterLink>
-          <FooterLink href="#">Peter</FooterLink>
-          <FooterLink href="#">Hughie</FooterLink>
-        </FooterBlock>
-
-        <FooterBlock>
-          <FooterTitle>App</FooterTitle>
-          <LineDiv></LineDiv>
-          <FooterLink href="#">About</FooterLink>
-          <FooterLink href="#">How works</FooterLink>
-          <FooterLink href="#">Graphics</FooterLink>
-        </FooterBlock>
-
-        <FooterBlock>
-          <FooterTitle>Portfolio</FooterTitle>
-          <LineDiv></LineDiv>
-          <FooterLink href="#">Centilano</FooterLink>
-          <FooterLink href="#">Cicrano</FooterLink>
-          <FooterLink href="#">Beltrano</FooterLink>
-          <FooterLink href="#">Fulano</FooterLink>
-          <FooterLink href="#">Teltano</FooterLink>
-          <FooterLink href="#">Ventilano</FooterLink>
-        </FooterBlock>
-
-        <FooterBlock>
-          <FooterTitle>Dashboard</FooterTitle>
-          <LineDiv></LineDiv>
-          <FooterLink href="#">Functions</FooterLink>
-          <FooterLink href="#">Images</FooterLink>
-          <FooterLink href="#">Price</FooterLink>
-        </FooterBlock>
-      </Footer>
 
     </Container>
   );

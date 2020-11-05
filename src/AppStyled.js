@@ -3,7 +3,6 @@ import { h1, h2, h3, span, color, paddingMobile, padding } from './Config';
 import bg_img from './img/pc1.jpg';
 
 export const Container = styled.div`
-    font-family: roboto;
 `;
 
 
@@ -25,21 +24,37 @@ export const Header = styled.div`
 export const DivHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    padding-top: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    background-color: ${props=>props.bgHeader || 'transparent'};
+    z-index: 999;
 
     @media(max-width: 800px) {
         display: none;
     }
 `;
+export const HeaderBlock = styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+`;
 export const HeaderText = styled.span`
     font-size: ${h2};
     margin-left: 20%;
-    color: #fff;
-    
+    color: ${props=>props.colorHeader};
+
     @media(min-width: 1501px) {
         margin-left: 25%;
     }
+`;
+export const HeaderLink = styled.a`
+    color: ${props=>props.colorHeader || '#fff'};
+    text-decoration: none;
+    font-size: ${span};
+    margin-right: 20px;
 `;
 
 
@@ -159,11 +174,9 @@ export const WeDoBlock = styled.div`
     border: 1px solid #7851A9;
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #7851A9;
-    transition: 200ms;
 	background-color: #7851A9;
 
     :hover {
-        margin-top: -5px;
         box-shadow: 0 0 15px 0 #7851A9;
     }
 
@@ -283,7 +296,6 @@ export const Form = styled.form`
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #ddd;
     background-color: #fff;
-    transition: 200ms;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -293,7 +305,6 @@ export const Form = styled.form`
     margin-top: 100px;
 
     :hover {
-        margin-bottom: 20px;
         box-shadow: 0 0 15px 0 #ddd;
     }
 
