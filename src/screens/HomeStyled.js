@@ -29,7 +29,6 @@ export const DivHeader = styled.div`
     height: 70px;
     background-color: ${props=>props.bgHeader || 'transparent'};
     z-index: 999;
-    transition: 1000ms;
 
     @media(max-width: 800px) {
         display: none;
