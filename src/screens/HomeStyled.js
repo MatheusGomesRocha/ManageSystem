@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { h1, h2, h3, span, color, paddingMobile, padding } from '../Config';
 import bg_img from '../img/pc1.jpg';
-
-export const Container = styled.div``;
+export const Container = styled.div`
+    background-color: #1f2933;
+`;
 
 
 /** HEADER CONTENT */
@@ -44,7 +45,7 @@ export const HeaderBlock = styled.div`
 export const HeaderText = styled.span`
     font-size: ${h2};
     margin-left: 20%;
-    color: ${props=>props.color};
+    color: #fff;
     
     @media(min-width: 1501px) {
         margin-left: 25%;
@@ -53,6 +54,7 @@ export const HeaderText = styled.span`
 export const HeaderLink = styled.a`
     text-decoration: none;
     font-size: ${span};
+    color: #fff;
     margin-right: 20px;
     color: ${props=>props.color};
 `;
@@ -101,7 +103,7 @@ export const SubTitle = styled.span`
 /* WHO WE ARE CONTENT */
 export const WhoAre = styled.div`
     height: 400px;
-    background-color: #3f51b5;
+    background-color: #616e7c;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -115,12 +117,6 @@ export const WhoAre = styled.div`
 export const WhoAreTitle = styled.span`
     font-size: ${h1};
     color: #fff;
-`;
-export const LineDiv = styled.div`
-    width: 50px;
-    height: 2px;
-    background-color: ${props => props.color || '#fff'};
-    margin-top: 5px;
 `;
 export const WhoAreText = styled.span`
     font-size: ${span};
@@ -140,6 +136,7 @@ export const WeDoTitleDiv = styled.div`
 `;
 export const WeDoTitle = styled.span`
     font-size: ${h1};
+    color: #fff;
     text-align: center;
     font-weight: bold;
 `;
@@ -171,14 +168,14 @@ export const WeDoBlock = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd;
+    border: 1px solid #616e7c;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 #ddd;
+    box-shadow: 0 0 5px 0 #616e7c;
     transition: 200ms;
 
     :hover {
         margin-top: -5px;
-        box-shadow: 0 0 15px 0 #ddd;
+        box-shadow: 0 0 15px 0 #616e7c;
     }
 
     @media(min-width: 1501px) {
@@ -188,6 +185,7 @@ export const WeDoBlock = styled.div`
 export const WeDoText = styled.span`
     font-size: ${h3};
     margin: 10px 0;
+    color: #fff;
 `;
 export const WeDoSubtext = styled.span`
     text-align: center;
@@ -225,7 +223,6 @@ export const Price = styled.div`
 export const PriceBlock = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #fff;
     width: 100%;
 
     @media(max-width: 601px) {
@@ -238,6 +235,7 @@ export const PriceBlock = styled.div`
 `;
 export const PriceTitle = styled.span`
     font-size: 45px;
+    color: #fff;
 
     @media(max-width: 800px) {
         margin-bottom: 10px;
@@ -246,6 +244,7 @@ export const PriceTitle = styled.span`
 `;
 export const PriceText = styled.span`
     font-size: ${span};
+    color: ${color};
     width: 50%;
     margin-top: 15px;
 
@@ -283,6 +282,7 @@ export const FormBlock = styled.div`
 export const FormTitle = styled.span`
     font-size: ${h1};
     text-align: center;
+    color: #fff;
 `;
 export const FormText = styled.span`
     font-size: ${span};
@@ -292,20 +292,20 @@ export const FormText = styled.span`
 `;
 export const Form = styled.form`
     padding: 0 5%;
-    border: 1px solid #ddd;
+    border: 1px solid #616e7c;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 #ddd;
-    background-color: #fff;
+    box-shadow: 0 0 5px 0 #616e7c;
+    background-color: #1f2933;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 400px;
+    height: 500px;
     width: 400px;
     margin-top: 100px;
 
     :hover {
-        box-shadow: 0 0 15px 0 #ddd;
+        box-shadow: 0 0 15px 0 #616e7c;
     }
 
     @media(max-width: 800px) {
@@ -316,6 +316,13 @@ export const Form = styled.form`
 `;
 export const FormPurple = styled.div`
     height: 200px;
-    background-color: #3f51b5;
+    background-color: #616e7c;
 `;
 
+
+export const LineDiv = styled.div`
+    width: 50px;
+    height: 2px;
+    background-color: #616e7c;
+    margin-top: 5px;
+`;

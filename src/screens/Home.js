@@ -49,6 +49,7 @@ import {
     Form,
     FormPurple,
 } from './HomeStyled';
+import purple from '@material-ui/core/colors/purple';
 
 function Home() {
     const [name, setName] = useState('');
@@ -84,12 +85,10 @@ function Home() {
 
     const handleScroll = () => {
         if (document.documentElement.scrollTop > 0) {
-            setBgHeader('#fff');
-            setColorHeader('#000');
+            setBgHeader('#1f2933');
 
         } else {
             setBgHeader('transparent');
-            setColorHeader('#fff');
         }
     }
 
@@ -103,10 +102,10 @@ function Home() {
             <Header>
                 <Fade in timeout={800}>
                     <DivHeader bgHeader={bgHeader}>
-                        <HeaderText color={colorHeader} >SeuMercado</HeaderText>
+                        <HeaderText>SeuMercado</HeaderText>
                         <HeaderBlock>
-                            <HeaderLink href="#" color={colorHeader} >Portfolio</HeaderLink>
-                            <HeaderLink href="#" color={colorHeader}>Employees</HeaderLink>
+                            <HeaderLink href="#">Portfolio</HeaderLink>
+                            <HeaderLink href="#">Employees</HeaderLink>
 
                             <Link style={{ textDecoration: 'none' }} to="services">
                                 <Button style={{
@@ -142,7 +141,7 @@ function Home() {
                 <WhoAreText>
                     We are a startup focused on helping other small businesses to level up, bringing more customers and giving a system that is capable of automating your commerce, you will do almost nothing, you just need to register new products and help answer question if a customer has one and we are responsible to do everything that is important, to you.
       </WhoAreText>
-                <Button href="./screens/Services" style={{ backgroundColor: '#fff', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained">
+                <Button href="./screens/Services" style={{ backgroundColor: '#303f9f', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15, color: '#fff' }} variant="contained">
                     Buy Now
       </Button>
             </WhoAre>
@@ -227,14 +226,16 @@ function Home() {
                     <FormText style={{ marginBottom: 10 }}>We answer all yours questions</FormText>
                     <TextField
                         onChange={handleName}
-                        style={{ width: '100%', marginTop: 10, }}
+                        style={{ width: '100%', marginTop: 15, }}
                         label="Full Name*"
                         type="text"
                         variant="outlined"
                     />
                     <TextField
+                        color="purple"
+                        id="outlined-basic"
                         onChange={handleEmail}
-                        style={{ width: '100%', marginTop: 10, }}
+                        style={{ width: '100%', marginTop: 15, }}
                         label="Email*"
                         type="email"
                         variant="outlined"
@@ -242,7 +243,7 @@ function Home() {
                     />
                     <TextField
                         onChange={handleMessage}
-                        style={{ width: '100%', marginTop: 10, }}
+                        style={{ width: '100%', marginTop: 15, }}
                         label="Message*"
                         type="text"
                         variant="outlined"
