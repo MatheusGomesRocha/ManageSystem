@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import { Fade } from '@material-ui/core';
+import { Button, TextField, Fade, Modal } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 import AutomationSvg from '../svg/automation';
 import ChatSvg from '../svg/chat';
@@ -49,15 +47,14 @@ import {
     Form,
     FormPurple,
 } from './HomeStyled';
-import purple from '@material-ui/core/colors/purple';
 
 function Home() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [password, setPassword] = useState('');
     const [bgHeader, setBgHeader] = useState('');
-    const [colorHeader, setColorHeader] = useState('');
-    const [transition, setTransition] = useState('');
+    const [open, setOpen] = useState(false);
 
     const handleName = (n) => {
         setName(n.target.value);
@@ -71,9 +68,21 @@ function Home() {
         setMessage(m.target.value)
     }
 
+    const handlePassword = (p) => {
+        setPassword(p.target.value)
+    }
+
     const handleSubmit = () => {
         console.log(email, message)
     }
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const isMobileDevice = useMediaQuery({
         query: '(max-width: 750px)'
@@ -92,10 +101,54 @@ function Home() {
         }
     }
 
-    useEffect(() => {
-        window.onscroll = () => handleScroll();
-        setColorHeader('#fff');
-    }, []);
+    const ModalOpen = () => {
+        return (
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropProps={{
+                    timeout: 1000,
+                }}
+                style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+
+            >
+                <Fade in={open} style={{ backgroundColor: '#fff', height: 500, width: 400 }}>
+                    <Form onSubmit={handleSubmit} style={{ marginTop: 0 }}>
+                        <FormTitle style={{ color: '#000' }}>Login</FormTitle>
+                        <LineDiv color="#000"></LineDiv>
+
+                        <TextField
+                            color="purple"
+                            id="outlined-basic"
+                            onChange={handleEmail}
+                            style={{ width: '100%', marginTop: 30, }}
+                            label="Email*"
+                            type="email"
+                            variant="outlined"
+                            value={email}
+                        />
+                        <TextField
+                            onChange={handlePassword}
+                            style={{ width: '100%', marginTop: 15, }}
+                            label="Senha*"
+                            type="password"
+                            variant="outlined"
+                            value={password}
+                        />
+                        <Link to="ManageSystem/Management" style={{width: '100%'}}>
+                            <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained" color="primary">
+                                Login
+                            </Button>
+                        </Link>
+                    </Form>
+
+                </Fade>
+            </Modal>
+        );
+    }
 
     const HeaderContent = () => {
         return (
@@ -107,7 +160,7 @@ function Home() {
                             <HeaderLink href="#">Portfolio</HeaderLink>
                             <HeaderLink href="#">Employees</HeaderLink>
 
-                            <Link style={{ textDecoration: 'none' }} to="services">
+                            <Link style={{ textDecoration: 'none' }} to="ManageSystem/Services">
                                 <Button style={{
                                     borderRadius: 20, color: '#fff',
                                     height: isMobileDevice ? 50 : 40, padding: 20, fontSize: 15,
@@ -125,10 +178,12 @@ function Home() {
                         We are responsible to create and launch your commerce on our App with the purpose to bring
                         more custormes and optimize the orders that your business will receive.
                     </SubTitle>
-                    <Button style={{ borderRadius: isMobileDevice ? 25 : 20, color: '#fff', marginTop: 15, height: isMobileDevice ? 50 : 40, width: 150, padding: 20, fontSize: 15 }} variant="contained" color="primary">
+                    <Button onClick={handleOpen} style={{ borderRadius: isMobileDevice ? 25 : 20, color: '#fff', marginTop: 15, height: isMobileDevice ? 50 : 40, width: 150, padding: 20, fontSize: 15 }} variant="contained" color="primary">
                         Login
                     </Button>
                 </DivTitle>
+
+                <ModalOpen />
             </Header>
         );
     }
@@ -141,7 +196,7 @@ function Home() {
                 <WhoAreText>
                     We are a startup focused on helping other small businesses to level up, bringing more customers and giving a system that is capable of automating your commerce, you will do almost nothing, you just need to register new products and help answer question if a customer has one and we are responsible to do everything that is important, to you.
       </WhoAreText>
-                <Button href="./screens/Services" style={{ backgroundColor: '#303f9f', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15, color: '#fff' }} variant="contained">
+                <Button style={{ backgroundColor: '#303f9f', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15, color: '#fff' }} variant="contained">
                     Buy Now
       </Button>
             </WhoAre>
@@ -216,7 +271,7 @@ function Home() {
                     <LineDiv color="#000"></LineDiv>
                     <FormText>
                         Do you have any questions? please fill out the form and feel free to ask whatever you want.
-          </FormText>
+                    </FormText>
                 </FormBlock>
 
                 <Form>
@@ -251,7 +306,7 @@ function Home() {
                     />
                     <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained" color="primary">
                         Send Message
-          </Button>
+                    </Button>
                 </Form>
 
             </FormDiv>
