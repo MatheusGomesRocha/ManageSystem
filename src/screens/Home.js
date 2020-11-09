@@ -138,7 +138,7 @@ function Home() {
                             variant="outlined"
                             value={password}
                         />
-                        <Link to="ManageSystem/Management" style={{width: '100%'}}>
+                        <Link to="ManageSystem/Management" style={{ width: '100%' }}>
                             <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained" color="primary">
                                 Login
                             </Button>
@@ -254,7 +254,7 @@ function Home() {
                     <PriceTitle>Don't worry about pricing</PriceTitle>
                     <PriceText>
                         We have 3 plans, 1/3/6 months and the higher your plan, more we can offer new functions, we are the lowest price on the market, and we will be happy to help you. And if that’s not enough, you have 1 month free trial.
-          </PriceText>
+                    </PriceText>
                 </PriceBlock>
 
                 <ChillSvg width={isMobileDevice ? '300px' : '400px'} height={isMobileDevice ? '300px' : '400px'} />

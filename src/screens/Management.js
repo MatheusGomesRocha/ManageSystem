@@ -5,15 +5,29 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
+import { useMediaQuery } from 'react-responsive';
 
-import ListItemText from '@material-ui/core/ListItemText';
+import { Button, TextField } from '@material-ui/core';
+import OpenMenu from '../svg/menu';
+import CloseMenu from '../svg/close';
+import SettingIcon from '../svg/settings';
+import BoxIcon from '../svg/caixa';
+import UserIcon from '../svg/users';
+import OrderIcon from '../svg/orders';
+import MessageIcon from '../svg/message';
 
 import {
-    Container,
+  Container,
+
+  Header,
+  HeaderInput,
+
+  Menu,
+  MenuTop,
+  MenuBottom,
+  MenuTitle,
+  MenuBtn,
 } from './ManagementStyled';
 
 const drawerWidth = 240;
@@ -90,62 +104,104 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  const isMobileDevice = useMediaQuery({
+    query: '(max-width: 750px)'
+  });
+
+  const MenuDesktop = () => {
+    return (
+      <Menu>
+        <MenuTop>
+          <MenuTitle>SeuMercado</MenuTitle>
+
+          <MenuBtn>
+            <OrderIcon />
+            Orders
+          </MenuBtn>
+
+          <MenuBtn>
+            <BoxIcon />
+            Products
+          </MenuBtn>
+
+          <MenuBtn>
+            <UserIcon />
+            Users
+          </MenuBtn>
+
+          <MenuBtn>
+            <MessageIcon />
+            Messages
+          </MenuBtn>
+        </MenuTop>
+
+        <MenuBottom>
+          <MenuBtn>
+            <SettingIcon />
+            Settings
+          </MenuBtn>
+          <MenuBtn>Log out</MenuBtn>
+        </MenuBottom>
+      </Menu>
+    );
+  }
+
   return (
     <Container>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <button
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+      {isMobileDevice ?
+
+        <div>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: open,
+            })}
           >
-            abrir
-          </button>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <button onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? 'a' : 'b'}
-          </button>
+            <Toolbar style={{ backgroundColor: '#1f2933' }}>
+              <Button
+                onClick={handleDrawerOpen}
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <OpenMenu />
+              </Button>
+
+            </Toolbar>
+          </AppBar>
+
+          <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="left"
+            open={open}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <Header>
+              <Button onClick={handleDrawerClose}>
+                <CloseMenu />
+              </Button>
+            </Header>
+            <Divider />
+
+          </Drawer>
         </div>
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      
+
+        :
+        <div style={{display: 'flex'}}>
+          <MenuDesktop />
+
+          <Header>
+            <HeaderInput
+              placeholder="Search"
+            />
+          </Header>
+        </div>
+      }
+
+
+
     </Container>
   );
 }
