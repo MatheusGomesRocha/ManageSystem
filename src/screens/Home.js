@@ -11,6 +11,10 @@ import RateSvg from '../svg/rate';
 import ChillSvg from '../svg/chill';
 
 import {
+    withStyles,
+} from '@material-ui/core/styles';
+
+import {
     Container,
 
     Header,
@@ -48,12 +52,37 @@ import {
     FormPurple,
 } from './HomeStyled';
 
+const CssTextField = withStyles({
+    root: {
+        '& label': {
+            color: '#ccc',
+        },
+        '& label.Mui-focused': {
+            color: '#fff',
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: '#fff',
+            },
+            '&:hover fieldset': {
+                borderColor: '#fff',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#fff',
+            },
+            color: '#fff',
+        },
+
+    },
+})(TextField);
+
+
 function Home() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [password, setPassword] = useState('');
-    const [bgHeader, setBgHeader] = useState('');
+    const [bgHeader, setBgHeader] = useState('transparent');
     const [open, setOpen] = useState(false);
 
     const handleName = (n) => {
@@ -99,7 +128,9 @@ function Home() {
         } else {
             setBgHeader('transparent');
         }
-    }
+    };
+
+
 
     const ModalOpen = () => {
         return (
@@ -152,7 +183,7 @@ function Home() {
 
     const HeaderContent = () => {
         return (
-            <Header>
+            <Header  onscroll={handleScroll} >
                 <Fade in timeout={800}>
                     <DivHeader bgHeader={bgHeader}>
                         <HeaderText>SeuMercado</HeaderText>
@@ -279,30 +310,26 @@ function Home() {
                     <LineDiv color="#000"></LineDiv>
 
                     <FormText style={{ marginBottom: 10 }}>We answer all yours questions</FormText>
-                    <TextField
-                        onChange={handleName}
-                        style={{ width: '100%', marginTop: 15, }}
+                    <CssTextField
                         label="Full Name*"
-                        type="text"
                         variant="outlined"
-                    />
-                    <TextField
-                        color="purple"
-                        id="outlined-basic"
-                        onChange={handleEmail}
+                        id="custom-css-outlined-input"
                         style={{ width: '100%', marginTop: 15, }}
+                        type="text"
+                    />
+                    <CssTextField
                         label="Email*"
-                        type="email"
                         variant="outlined"
-                        value={email}
-                    />
-                    <TextField
-                        onChange={handleMessage}
+                        id="custom-css-outlined-input"
                         style={{ width: '100%', marginTop: 15, }}
-                        label="Message*"
                         type="text"
+                    />
+                    <CssTextField
+                        label="Message*"
                         variant="outlined"
-                        value={message}
+                        id="custom-css-outlined-input"
+                        style={{ width: '100%', marginTop: 15, }}
+                        type="text"
                     />
                     <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained" color="primary">
                         Send Message
