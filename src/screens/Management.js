@@ -1,21 +1,23 @@
 import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
+
 import { useMediaQuery } from 'react-responsive';
 
-import { Button, TextField } from '@material-ui/core';
-import OpenMenu from '../svg/menu';
-import CloseMenu from '../svg/close';
 import SettingIcon from '../svg/settings';
 import BoxIcon from '../svg/caixa';
 import UserIcon from '../svg/users';
 import OrderIcon from '../svg/orders';
 import MessageIcon from '../svg/message';
+import img from '../img/pc1.jpg';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+import {Button} from '@material-ui/core';
 
 import {
   Container,
@@ -28,81 +30,27 @@ import {
   MenuBottom,
   MenuTitle,
   MenuBtn,
+
+  MiddleContent,
+  UserImg,
 } from './ManagementStyled';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-    },
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    hide: {
-      display: 'none',
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    },
-  }),
-);
+let array = [
+  { id: '1', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '1' }, adress: { rua: '1', bairro: '1' } },
+  { id: '2', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '2' }, adress: { rua: '2', bairro: '2' } },
+  { id: '3', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '3' }, adress: { rua: '3', bairro: '3' } },
+  { id: '4', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '4' }, adress: { rua: '4', bairro: '4' } },
+  { id: '5', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '5' }, adress: { rua: '5', bairro: '5' } },
+  { id: '6', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '6' }, adress: { rua: '6', bairro: '6' } },
+  { id: '7', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '7' }, adress: { rua: '7', bairro: '7' } },
+  { id: '8', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', order: { products: '8' }, adress: { rua: '8', bairro: '8' } },
+]
 
-export default function PersistentDrawerLeft() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+export default function Management() {
 
   const isMobileDevice = useMediaQuery({
     query: '(max-width: 750px)'
@@ -146,61 +94,43 @@ export default function PersistentDrawerLeft() {
     );
   }
 
+  const TableContent = () => {
+    return (
+      <TableContainer style={{ borderRadius: 30, margin: '100px 5%', width: '60%', backgroundColor: '#616e7c' }} component={Paper}>
+        <Table style={{minWidth: 650}} aria-label="simple table">
+          <TableHead>
+            <TableRow style={{backgroundColor: '#3f51b5'}}>
+              <TableCell style={{color: '#fff', fontSize: 18}}>User</TableCell>
+              <TableCell align="center" style={{color: '#fff', fontSize: 18}}>Price</TableCell>
+              <TableCell align="center" style={{color: '#fff', fontSize: 18}}>Order</TableCell>
+              <TableCell align="center" style={{color: '#fff', fontSize: 18}}>Adress</TableCell>
+              <TableCell align="center" style={{color: '#fff', fontSize: 18}}>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {array.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell style={{color: '#fff', fontSize: 16}} component="th" scope="row">
+                  <UserImg src={img} />
+                  {row.userName}
+                </TableCell>
+                <TableCell align="center" style={{color: '#fff', fontSize: 16}}>R$ {row.orderPrice}</TableCell>
+                <TableCell align="center" style={{color: '#fff', fontSize: 16}}><Button variant="contained" color="primary">Order</Button></TableCell>
+                <TableCell align="center" style={{color: '#fff', fontSize: 16}}><Button variant="contained" color="primary">Adress</Button></TableCell>
+                <TableCell align="center" style={{color: '#fff', fontSize: 16}}><Button variant="contained" style={{backgroundColor: '#d32f2f', color: '#fff'}}>Excluir</Button></TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
+
   return (
     <Container>
-      {isMobileDevice ?
+      <MenuDesktop />
 
-        <div>
-          <CssBaseline />
-          <AppBar
-            position="fixed"
-            className={clsx(classes.appBar, {
-              [classes.appBarShift]: open,
-            })}
-          >
-            <Toolbar style={{ backgroundColor: '#1f2933' }}>
-              <Button
-                onClick={handleDrawerOpen}
-                className={clsx(classes.menuButton, open && classes.hide)}
-              >
-                <OpenMenu />
-              </Button>
-
-            </Toolbar>
-          </AppBar>
-
-          <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open={open}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <Header>
-              <Button onClick={handleDrawerClose}>
-                <CloseMenu />
-              </Button>
-            </Header>
-            <Divider />
-
-          </Drawer>
-        </div>
-
-        :
-        <div style={{display: 'flex'}}>
-          <MenuDesktop />
-
-          <Header>
-            <HeaderInput
-              placeholder="Search"
-            />
-          </Header>
-        </div>
-      }
-
-
+      <TableContent />
 
     </Container>
   );

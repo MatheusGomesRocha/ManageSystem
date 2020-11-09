@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import {h3} from '../Config';
 
 export const Container = styled.div`
+    display: flex;
     height: 100vh;
     background-color: #1f2933;
-    display: flex;
 `;
 
 
@@ -84,3 +84,12 @@ export const Content = styled.div`
 `;
 
 
+
+export const MiddleContent = styled.div`
+    margin-left: 20px;
+`;
+export const UserImg = styled.img`
+    width: 45px;
+    height: 45px;
+    border-radius: 25px;
+`;
