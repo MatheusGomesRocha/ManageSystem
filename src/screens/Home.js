@@ -8,7 +8,6 @@ import ManageSvg from '../svg/management';
 import NotificationSvg from '../svg/notification';
 import OrganizationSvg from '../svg/organization';
 import RateSvg from '../svg/rate';
-import ChillSvg from '../svg/chill';
 
 import {
     withStyles,
@@ -52,29 +51,8 @@ import {
     FormPurple,
 } from './HomeStyled';
 
-const CssTextField = withStyles({
-    root: {
-        '& label': {
-            color: '#aaa',
-        },
-        '& label.Mui-focused': {
-            color: '#4361EE',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: '#aaa',
-            },
-            '&:hover fieldset': {
-                borderColor: '#aaa',
-            },
-            '&.Mui-focused fieldset': {
-                borderColor: '#4361EE',
-            },
-            color: '#aaa',
-        },
 
-    },
-})(TextField);
+
 
 
 function Home() {
@@ -84,6 +62,60 @@ function Home() {
     const [password, setPassword] = useState('');
     const [bgHeader, setBgHeader] = useState('transparent');
     const [open, setOpen] = useState(false);
+
+    const DefaultBtn = withStyles(() => ({
+        root: {
+            backgroundColor: '#00CA80',
+            padding: 20,
+            fontSize: 16,
+            height: isMobileDevice ? 50 : 40,
+            marginRight: isLgDesktop ? '25%' : '20%',
+            borderRadius: isMobileDevice ? 25 : 20,
+            width: '100%',
+            color: '#fff',
+
+            '&:hover': {
+                backgroundColor: '#008353',
+            }
+        },
+    }))(Button);
+
+    const DefaultModal = withStyles(() => ({
+        root: {
+            width: isMobileDevice && '90%', 
+            margin: isMobileDevice && '0 5%', 
+            height: '100vh', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center' 
+        }
+    }))(Modal);
+
+    const CssTextField = withStyles({
+        root: {
+            '& label': {
+                color: '#aaa',
+            },
+            '& label.Mui-focused': {
+                color: '#4361EE',
+            },
+            '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                    borderColor: '#aaa',
+                },
+                '&:hover fieldset': {
+                    borderColor: '#aaa',
+                },
+                '&.Mui-focused fieldset': {
+                    borderColor: '#4361EE',
+                },
+                color: '#aaa',
+                width: '100%', 
+                marginTop: 15, 
+            },
+    
+        },
+    })(TextField);
 
     const handleName = (n) => {
         setName(n.target.value);
@@ -141,36 +173,32 @@ function Home() {
                 BackdropProps={{
                     timeout: 1000,
                 }}
-                style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-
             >
                 <Fade in={open} style={{ backgroundColor: '#fff', height: 500, width: 400 }}>
                     <Form onSubmit={handleSubmit} style={{ marginTop: 0 }}>
                         <FormTitle style={{ color: '#000' }}>Login</FormTitle>
                         <LineDiv color="#000"></LineDiv>
 
-                        <TextField
+                        <CssTextField
                             color="purple"
                             id="outlined-basic"
                             onChange={handleEmail}
-                            style={{ width: '100%', marginTop: 30, }}
                             label="Email*"
                             type="email"
                             variant="outlined"
                             value={email}
                         />
-                        <TextField
+                        <CssTextField
                             onChange={handlePassword}
-                            style={{ width: '100%', marginTop: 15, }}
                             label="Senha*"
                             type="password"
                             variant="outlined"
                             value={password}
                         />
                         <Link to="ManageSystem/Management" style={{ width: '100%', textDecoration: 'none' }}>
-                            <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 18, backgroundColor: '#F72585' }} variant="contained">
+                            <DefaultBtn type="submit" style={{ borderRadius: 25, height: 50, marginTop: 20}} variant="contained">
                                 Login
-                            </Button>
+                            </DefaultBtn>
                         </Link>
                     </Form>
 
@@ -190,11 +218,7 @@ function Home() {
                             <HeaderLink href="#">Employees</HeaderLink>
 
                             <Link style={{ textDecoration: 'none' }} to="ManageSystem/Services">
-                                <Button style={{
-                                    borderRadius: 20, color: '#fff',
-                                    height: isMobileDevice ? 50 : 40, padding: 20, fontSize: 15, color: '#fff',
-                                    marginRight: isLgDesktop ? '25%' : '20%', width: '100%', backgroundColor: '#F72585'
-                                }} variant="contained"> Buy Now </Button>
+                                <DefaultBtn variant="contained"> Buy Now </DefaultBtn>
                             </Link>
                         </HeaderBlock>
 
@@ -207,9 +231,9 @@ function Home() {
                         We are responsible to create and launch your commerce on our App with the purpose to bring
                         more custormes and optimize the orders that your business will receive.
                     </SubTitle>
-                    <Button onClick={handleOpen} style={{ backgroundColor: '#F72585', borderRadius: isMobileDevice ? 25 : 20, color: '#fff', marginTop: 15, height: isMobileDevice ? 50 : 40, width: 150, padding: 20, fontSize: 15 }} variant="contained">
+                    <DefaultBtn onClick={handleOpen} style={{ width: isMobileDevice ? '50%' : '20%', marginRight: 0, marginTop: 20 }} variant="contained">
                         Login
-                    </Button>
+                    </DefaultBtn>
                 </DivTitle>
 
                 <ModalOpen />
@@ -224,10 +248,11 @@ function Home() {
                 <LineDiv></LineDiv>
                 <WhoAreText>
                     We are a startup focused on helping other small businesses to level up, bringing more customers and giving a system that is capable of automating your commerce, you will do almost nothing, you just need to register new products and help answer question if a customer has one and we are responsible to do everything that is important, to you.
-      </WhoAreText>
-                <Button style={{ backgroundColor: '#F72585', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15, color: '#fff' }} variant="contained">
+                </WhoAreText>
+
+                <DefaultBtn style={{ marginTop: 20, marginRight: 0, width: isMobileDevice ? '50%' : '20%', }} variant="contained">
                     Buy Now
-      </Button>
+                </DefaultBtn>
             </WhoAre>
         );
     }
@@ -308,7 +333,7 @@ function Home() {
                         label="Full Name*"
                         variant="outlined"
                         id="custom-css-outlined-input"
-                        style={{ width: '100%', marginTop: 15, }}
+                        style={{ }}
                         type="text"
                     />
                     <CssTextField
@@ -325,9 +350,9 @@ function Home() {
                         style={{ width: '100%', marginTop: 15, }}
                         type="text"
                     />
-                    <Button type="submit" style={{ borderRadius: 25, fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15, backgroundColor: '#F72585', color: '#fff' }} variant="contained">
+                    <DefaultBtn type="submit" style={{marginTop: 20, marginRight: 0, height: 50, borderRadius: 25}} variant="contained">
                         Send Message
-                    </Button>
+                    </DefaultBtn>
                 </Form>
 
             </FormDiv>

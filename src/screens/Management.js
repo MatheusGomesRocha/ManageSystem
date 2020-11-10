@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useMediaQuery } from 'react-responsive';
-
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import SettingIcon from '../svg/settings';
 import BoxIcon from '../svg/caixa';
 import UserIcon from '../svg/users';
@@ -61,7 +61,27 @@ let array = [
   { id: '8', userName: 'teste7', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: { id: '8', name: 'SobreCoxa', price: '28,00', quantidade: '3' }, adress: { rua: '8', bairro: '8' } },
 ]
 
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
+const DefaultButton = withStyles((theme) => ({
+  
+}))
 
 export default function Management() {
   const [open, setOpen] = useState(false);
@@ -171,27 +191,27 @@ export default function Management() {
         <Table style={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>User</TableCell>
-              <TableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Status</TableCell>
-              <TableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Subtotal</TableCell>
-              <TableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Order</TableCell>
-              <TableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Adress</TableCell>
-              <TableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>#</TableCell>
+              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>User</StyledTableCell>
+              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Status</StyledTableCell>
+              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Subtotal</StyledTableCell>
+              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Order</StyledTableCell>
+              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Adress</StyledTableCell>
+              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>#</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {array.map((item) => (
-              <TableRow key={item.id}>
+              <StyledTableRow key={item.id}>
                 <TableCell style={{fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'space-around' }} component="th" scope="row">
                   <UserImg src={img} />
                   {item.userName}
                 </TableCell>
-                <TableCell align="center" style={{fontSize: 18 }}>Entregue</TableCell>
-                <TableCell align="center" style={{fontSize: 18 }}>R$ {item.orderPrice}</TableCell>
-                <TableCell align="center" style={{fontSize: 18 }}><Button style={{backgroundColor: '#4361EE'}} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></TableCell>
-                <TableCell align="center" style={{fontSize: 18 }}><Button style={{backgroundColor: '#4361EE'}} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></TableCell>
-                <TableCell align="center" style={{fontSize: 18 }}><Button onClick={() => handleOpen(item.products)} variant="contained" style={{ backgroundColor: '#d32f2f', color: '#fff' }}><DeleteIcon /></Button></TableCell>
-              </TableRow>
+                <StyledTableCell align="center" style={{fontSize: 18 }}>Entregue</StyledTableCell>
+                <StyledTableCell align="center" style={{fontSize: 18 }}>R$ {item.orderPrice}</StyledTableCell>
+                <StyledTableCell align="center" style={{fontSize: 18 }}><Button style={{backgroundColor: '#0C4BCC'}} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
+                <StyledTableCell align="center" style={{fontSize: 18 }}><Button style={{backgroundColor: '#0C4BCC'}} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
+                <StyledTableCell align="center" style={{fontSize: 18 }}><Button onClick={() => handleOpen(item.products)} variant="contained" style={{ backgroundColor: '#FE5A74', color: '#fff' }}><DeleteIcon /></Button></StyledTableCell>
+              </StyledTableRow>
             ))}
           </TableBody>
         </Table>

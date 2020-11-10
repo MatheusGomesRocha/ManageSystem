@@ -3,7 +3,7 @@ import { h1, h2, h3, span, color, primary, secondary, gray } from '../Config';
 
 export const Container = styled.div`
     font-family: Sans-Serif;
-    background-color: ${primary};
+    background-color: ${secondary};
     height: 100vh;
 
     @media(max-width: 1050px) {
@@ -18,7 +18,7 @@ export const DivHeader = styled.div`
     justify-content: space-around;
     width: 100%;
     height: 70px;
-    background-color: ${primary};
+    background-color: ${secondary};
 
     @media(max-width: 800px) {
         display: none;
@@ -31,7 +31,7 @@ export const HeaderBlock = styled.div`
 `;
 export const HeaderText = styled.span`
     font-size: ${h2};
-    color: ${color};
+    color: ${primary};
 
     @media(min-width: 1501px) {
         margin-left: 25%;
@@ -40,14 +40,14 @@ export const HeaderText = styled.span`
 export const HeaderLink = styled.span`
     font-size: ${span};
     margin-right: 20px;
-    color: ${color};
+    color: ${primary};
 `;
 
 
 
 export const SubHeader = styled.div`
     height: 400px;
-    background-color: ${secondary};
+    background-color: ${primary};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,11 +56,9 @@ export const SubHeader = styled.div`
 export const SubHeaderTitle = styled.span`
     font-size: ${h1};
     margin-bottom: 10px;
-    color: #fff;
 `;
 export const SubHeaderText = styled.span`
     font-size: ${span};
-    color: #fff;
     width: 50%;
     text-align: center;
 
@@ -70,7 +68,7 @@ export const SubHeaderText = styled.span`
 `;
 export const ButtonBlock = styled.div`
     margin-top: 20px;
-    border: 1px solid ${secondary};
+    border: 1px solid ${primary};
 `;
 
 

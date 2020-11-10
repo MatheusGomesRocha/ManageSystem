@@ -16,6 +16,6 @@ export const padding = '0 20% 0 20%';
 
 export const primary = '#fff';
 
-export const secondary = '#4361EE';
+export const secondary = '#0C4BCC';
 
 export const gray = '#aaa';

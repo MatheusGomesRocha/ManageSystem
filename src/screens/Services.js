@@ -4,6 +4,10 @@ import { Button } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 
 import {
+    withStyles,
+} from '@material-ui/core/styles';
+
+import {
     Container,
 
     DivHeader,
@@ -30,18 +34,35 @@ import {
 } from './ServicesStyled';
 
 function Services() {
-    const [BtnColorAnnual, setBtnColorAnnual] = useState('#F72585');
+    const [BtnColorAnnual, setBtnColorAnnual] = useState('#00CA80');
     const [BtnColorMonthly, setBtnColorMonthly] = useState('#1f2933');
 
     const [BtnAnnual, setBtnAnnual] = useState(true);
     const [BtnMonthly, setBtnMonthly] = useState(false);
+
+    const DefaultBtn = withStyles(() => ({
+        root: {
+            backgroundColor: '#00CA80',
+            borderRadius: 20,
+            padding: 20,
+            fontSize: 16,
+            height: 40,
+            width: '100%',
+            color: '#fff',
+
+            '&:hover': {
+                backgroundColor: '#008353',
+            }
+        },
+    }))(Button);
+
 
     const isMediumDevice = useMediaQuery({
         query: '(min-width: 750px) and (max-width: 1050px)'
     });
 
     const handlePressAnnual = () => {
-        setBtnColorAnnual('#F72585');
+        setBtnColorAnnual('#00CA80');
 
         setBtnColorMonthly('#1f2933');
 
@@ -50,7 +71,7 @@ function Services() {
     };
 
     const handlePressMonthly = () => {
-        setBtnColorMonthly('#F72585');
+        setBtnColorMonthly('#00CA80');
 
         setBtnColorAnnual('#1f2933');
 
@@ -69,10 +90,7 @@ function Services() {
                     <HeaderLink>Portfolio</HeaderLink>
                     <HeaderLink>Employees</HeaderLink>
 
-                    <Button style={{
-                        borderRadius: 20, color: '#fff',
-                        height: 40, padding: 20, fontSize: 15, backgroundColor: '#F72585'
-                    }} color="primary" variant="contained"> Buy Now </Button>
+                    <DefaultBtn variant="contained"> Buy Now </DefaultBtn>
                 </HeaderBlock>
 
             </DivHeader>
@@ -88,16 +106,13 @@ function Services() {
                 </SubHeaderText>
 
                 <ButtonBlock>
-                    <Button style={{
-                        borderRadius: 2,height: 40, borderWidth: 1, padding: 20, fontSize: 15,
-                        backgroundColor: BtnColorAnnual, color: '#fff',
-                    }} color="primary" variant="contained" onClick={handlePressAnnual}> Annual
-                    </Button>
+                    <DefaultBtn style={{ width: '50%', borderRadius: 2, backgroundColor: BtnColorAnnual }} variant="contained" onClick={handlePressAnnual}>
+                        Annual
+                    </DefaultBtn>
 
-                    <Button style={{
-                        borderRadius: 2, height: 40, padding: 20, fontSize: 15, backgroundColor: BtnColorMonthly, color: '#fff',
-                    }} color="primary" variant="contained" onClick={handlePressMonthly}> Monthly
-                    </Button>
+                    <DefaultBtn style={{ width: '50%', borderRadius: 2, backgroundColor: BtnColorMonthly }} variant="contained" onClick={handlePressMonthly}>
+                        Monthly
+                    </DefaultBtn>
                 </ButtonBlock>
             </SubHeader>
         );
@@ -143,11 +158,8 @@ function Services() {
                         </BadgeBlock>
                     </PriceBody>
 
-                    <Button style={{
-                        borderRadius: 5, width: isMediumDevice ? '60%' : '90%',
-                        backgroundColor: '#F72585', color: '#fff', height: 40, padding: 20, fontSize: 15, marginTop: 50,
-                    }}  variant="contained"> Subscribe now
-                    </Button>
+                    <DefaultBtn style={{height: 50, borderRadius: 5, width: isMediumDevice ? '60%' : '90%', marginTop: 50}} variant="contained"> Subscribe now
+                    </DefaultBtn>
 
                     <PriceText style={{ marginTop: 10 }}>all features 1 month free trial</PriceText>
                 </PriceBlock>
@@ -187,11 +199,8 @@ function Services() {
                         </BadgeBlock>
                     </PriceBody>
 
-                    <Button style={{
-                        borderRadius: 5, width: isMediumDevice ? '60%' : '90%',
-                        backgroundColor: '#F72585', color: '#fff', height: 40, padding: 20, fontSize: 15, marginTop: 50,
-                    }}  variant="contained"> Subscribe now
-                    </Button>
+                    <DefaultBtn style={{height: 50, borderRadius: 5, width: isMediumDevice ? '60%' : '90%', marginTop: 50}} variant="contained"> Subscribe now
+                    </DefaultBtn>
 
                     <PriceText style={{ marginTop: 10 }}>all features 1 month free trial</PriceText>
                 </PriceBlock>
@@ -230,11 +239,9 @@ function Services() {
                         </BadgeBlock>
                     </PriceBody>
 
-                    <Button style={{
-                        borderRadius: 5, width: isMediumDevice ? '60%' : '90%',
-                        backgroundColor: '#F72585', color: '#fff', height: 40, padding: 20, fontSize: 15, marginTop: 50,
-                    }}  variant="contained"> Subscribe now
-                    </Button>
+                    <DefaultBtn style={{height: 50, borderRadius: 5, width: isMediumDevice ? '60%' : '90%', marginTop: 50}} variant="contained">
+                         Subscribe now
+                    </DefaultBtn>
 
                     <PriceText style={{ marginTop: 10 }}>all features 1 month free trial</PriceText>
                 </PriceBlock>
