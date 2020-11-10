@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { h1, h2, h3, span, color, paddingMobile, padding } from '../Config';
+import { h1, h2, h3, span, color, paddingMobile, padding, primary, secondary, gray } from '../Config';
 import bg_img from '../img/pc1.jpg';
 export const Container = styled.div`
-    background-color: #1f2933;
+    background-color: ${primary};
 `;
 
 
@@ -28,7 +28,7 @@ export const DivHeader = styled.div`
     position: fixed;
     width: 100%;
     height: 70px;
-    background-color: ${props=>props.bgHeader || 'transparent'};
+    background-color: ${props=>props.bgHeader};
     z-index: 999;
 
     @media(max-width: 800px) {
@@ -90,7 +90,7 @@ export const Title = styled.span`
 `;
 export const SubTitle = styled.span`
     text-align: center;
-    color: ${color};
+    color: ${gray};
     margin-top: 10px;
     font-size: ${span};
 
@@ -103,7 +103,7 @@ export const SubTitle = styled.span`
 /* WHO WE ARE CONTENT */
 export const WhoAre = styled.div`
     height: 400px;
-    background-color: #616e7c;
+    background-color: ${secondary};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -136,9 +136,9 @@ export const WeDoTitleDiv = styled.div`
 `;
 export const WeDoTitle = styled.span`
     font-size: ${h1};
-    color: #fff;
     text-align: center;
     font-weight: bold;
+    color: ${color};
 `;
 export const WeDo = styled.div`
     display: grid;
@@ -168,14 +168,14 @@ export const WeDoBlock = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #616e7c;
+    border: 1px solid ${secondary};
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 #616e7c;
+    box-shadow: 0 0 5px 0 ${secondary};
     transition: 200ms;
 
     :hover {
         margin-top: -5px;
-        box-shadow: 0 0 15px 0 #616e7c;
+        box-shadow: 0 0 15px 0 ${secondary};
     }
 
     @media(min-width: 1501px) {
@@ -185,11 +185,11 @@ export const WeDoBlock = styled.div`
 export const WeDoText = styled.span`
     font-size: ${h3};
     margin: 10px 0;
-    color: #fff;
+    color ${color}
 `;
 export const WeDoSubtext = styled.span`
     text-align: center;
-    color: ${color};
+    color: ${gray};
     font-size: ${span};
     margin: 10px 20px;
 `;
@@ -198,60 +198,31 @@ export const WeDoSubtext = styled.span`
 /** PRICE CONTENT */
 export const Price = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    @media(max-width: 800px) {
-        flex-direction: column;
-        padding: 20px 10%;
-    }
+    height: 350px;
+    background-color: ${secondary};
+    padding: 0 20%;
 
-    @media(min-width: 801px) {
-        padding: ${padding};
-        grid-template-columns: auto auto;
-    }
-
-    @media(min-width: 900px) {
-        padding: 20px 10%;
-    }
-
-    @media(min-width: 1500px) {
-        padding: 20px 0;
-        justify-content: center;
-    }
-`;
-export const PriceBlock = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    @media(max-width: 601px) {
-        margin-bottom: 50px;
-    }
-
-    @media(min-width: 1500px) {
-        width: 25%;
+    @media(max-width: 750px) {
+        padding: 10%;
     }
 `;
 export const PriceTitle = styled.span`
     font-size: 45px;
-    color: #fff;
+    color: ${primary};
+    text-align: center;
 
     @media(max-width: 800px) {
         margin-bottom: 10px;
-        text-align: center;
     }
 `;
 export const PriceText = styled.span`
     font-size: ${span};
-    color: ${color};
-    width: 50%;
+    color: ${primary};
     margin-top: 15px;
-
-    @media(max-width: 801px) {
-        width: 100%;
-        text-align: center;
-    }
+    text-align: center;
 `;
 
 
@@ -282,20 +253,20 @@ export const FormBlock = styled.div`
 export const FormTitle = styled.span`
     font-size: ${h1};
     text-align: center;
-    color: #fff;
+    color: ${color};
 `;
 export const FormText = styled.span`
     font-size: ${span};
-    color: ${color};
+    color: ${gray};
     text-align: center;
     margin-top: 15px;
 `;
 export const Form = styled.form`
     padding: 0 5%;
-    border: 1px solid #616e7c;
+    border: 1px solid ${gray};
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 #616e7c;
-    background-color: #1f2933;
+    box-shadow: 0 0 5px 0 ${gray};
+    background-color: ${primary};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -305,7 +276,7 @@ export const Form = styled.form`
     margin-top: 100px;
 
     :hover {
-        box-shadow: 0 0 15px 0 #616e7c;
+        box-shadow: 0 0 15px 0 ${gray};
     }
 
     @media(max-width: 800px) {
@@ -316,13 +287,13 @@ export const Form = styled.form`
 `;
 export const FormPurple = styled.div`
     height: 200px;
-    background-color: #616e7c;
+    background-color: ${secondary};
 `;
 
 
 export const LineDiv = styled.div`
     width: 50px;
     height: 2px;
-    background-color: #616e7c;
+    background-color: ${gray};
     margin-top: 5px;
 `;

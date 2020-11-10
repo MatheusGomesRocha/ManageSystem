@@ -55,22 +55,22 @@ import {
 const CssTextField = withStyles({
     root: {
         '& label': {
-            color: '#ccc',
+            color: '#aaa',
         },
         '& label.Mui-focused': {
-            color: '#fff',
+            color: '#4361EE',
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: '#fff',
+                borderColor: '#aaa',
             },
             '&:hover fieldset': {
-                borderColor: '#fff',
+                borderColor: '#aaa',
             },
             '&.Mui-focused fieldset': {
-                borderColor: '#fff',
+                borderColor: '#4361EE',
             },
-            color: '#fff',
+            color: '#aaa',
         },
 
     },
@@ -130,8 +130,6 @@ function Home() {
         }
     };
 
-
-
     const ModalOpen = () => {
         return (
             <Modal
@@ -169,8 +167,8 @@ function Home() {
                             variant="outlined"
                             value={password}
                         />
-                        <Link to="ManageSystem/Management" style={{ width: '100%' }}>
-                            <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained" color="primary">
+                        <Link to="ManageSystem/Management" style={{ width: '100%', textDecoration: 'none' }}>
+                            <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 18, backgroundColor: '#F72585' }} variant="contained">
                                 Login
                             </Button>
                         </Link>
@@ -183,7 +181,7 @@ function Home() {
 
     const HeaderContent = () => {
         return (
-            <Header  onscroll={handleScroll} >
+            <Header onscroll={handleScroll} >
                 <Fade in timeout={800}>
                     <DivHeader bgHeader={bgHeader}>
                         <HeaderText>SeuMercado</HeaderText>
@@ -194,9 +192,9 @@ function Home() {
                             <Link style={{ textDecoration: 'none' }} to="ManageSystem/Services">
                                 <Button style={{
                                     borderRadius: 20, color: '#fff',
-                                    height: isMobileDevice ? 50 : 40, padding: 20, fontSize: 15,
-                                    marginRight: isLgDesktop ? '25%' : '20%', width: '100%'
-                                }} variant="contained" color="primary"> Buy Now </Button>
+                                    height: isMobileDevice ? 50 : 40, padding: 20, fontSize: 15, color: '#fff',
+                                    marginRight: isLgDesktop ? '25%' : '20%', width: '100%', backgroundColor: '#F72585'
+                                }} variant="contained"> Buy Now </Button>
                             </Link>
                         </HeaderBlock>
 
@@ -209,7 +207,7 @@ function Home() {
                         We are responsible to create and launch your commerce on our App with the purpose to bring
                         more custormes and optimize the orders that your business will receive.
                     </SubTitle>
-                    <Button onClick={handleOpen} style={{ borderRadius: isMobileDevice ? 25 : 20, color: '#fff', marginTop: 15, height: isMobileDevice ? 50 : 40, width: 150, padding: 20, fontSize: 15 }} variant="contained" color="primary">
+                    <Button onClick={handleOpen} style={{ backgroundColor: '#F72585', borderRadius: isMobileDevice ? 25 : 20, color: '#fff', marginTop: 15, height: isMobileDevice ? 50 : 40, width: 150, padding: 20, fontSize: 15 }} variant="contained">
                         Login
                     </Button>
                 </DivTitle>
@@ -227,7 +225,7 @@ function Home() {
                 <WhoAreText>
                     We are a startup focused on helping other small businesses to level up, bringing more customers and giving a system that is capable of automating your commerce, you will do almost nothing, you just need to register new products and help answer question if a customer has one and we are responsible to do everything that is important, to you.
       </WhoAreText>
-                <Button style={{ backgroundColor: '#303f9f', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15, color: '#fff' }} variant="contained">
+                <Button style={{ backgroundColor: '#F72585', borderRadius: isMobileDevice ? 25 : 20, fontFamily: 'arial', width: isMobileDevice && '50%', height: isMobileDevice ? 50 : 40, padding: 20, marginTop: 20, fontSize: 15, color: '#fff' }} variant="contained">
                     Buy Now
       </Button>
             </WhoAre>
@@ -281,14 +279,10 @@ function Home() {
     const PriceContent = () => {
         return (
             <Price>
-                <PriceBlock>
-                    <PriceTitle>Don't worry about pricing</PriceTitle>
-                    <PriceText>
-                        We have 3 plans, 1/3/6 months and the higher your plan, more we can offer new functions, we are the lowest price on the market, and we will be happy to help you. And if that’s not enough, you have 1 month free trial.
-                    </PriceText>
-                </PriceBlock>
-
-                <ChillSvg width={isMobileDevice ? '300px' : '400px'} height={isMobileDevice ? '300px' : '400px'} />
+                <PriceTitle>Don't worry about pricing</PriceTitle>
+                <PriceText>
+                    We have 3 plans, 1/3/6 months and the higher your plan, more we can offer new functions, we are the lowest price on the market, and we will be happy to help you. And if that’s not enough, you have 1 month free trial.
+                </PriceText>
             </Price>
         );
     }
@@ -331,7 +325,7 @@ function Home() {
                         style={{ width: '100%', marginTop: 15, }}
                         type="text"
                     />
-                    <Button type="submit" style={{ borderRadius: 25, color: '#fff', fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15 }} variant="contained" color="primary">
+                    <Button type="submit" style={{ borderRadius: 25, fontFamily: 'arial', width: '100%', height: 50, padding: 20, marginTop: 20, fontSize: 15, backgroundColor: '#F72585', color: '#fff' }} variant="contained">
                         Send Message
                     </Button>
                 </Form>
@@ -362,13 +356,10 @@ function Home() {
 
             <WhatWeDoContent />
 
-            <LineDiv color="#ddd" style={{ width: '100%' }}></LineDiv>
 
             {/* DONT WORRY ABOUT PRICING CONTENT */}
 
             <PriceContent />
-
-            <LineDiv color="#ddd" style={{ width: '100%' }}></LineDiv>
 
             {/** FORM CONTENT */}
 

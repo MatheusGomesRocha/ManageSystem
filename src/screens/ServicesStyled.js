@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { h1, h2, h3, span, color } from '../Config';
+import { h1, h2, h3, span, color, primary, secondary, gray } from '../Config';
 
 export const Container = styled.div`
     font-family: Sans-Serif;
-    background-color: #1f2933;
+    background-color: ${primary};
     height: 100vh;
 
     @media(max-width: 1050px) {
@@ -18,7 +18,7 @@ export const DivHeader = styled.div`
     justify-content: space-around;
     width: 100%;
     height: 70px;
-    background-color: #1f2933;
+    background-color: ${primary};
 
     @media(max-width: 800px) {
         display: none;
@@ -31,7 +31,7 @@ export const HeaderBlock = styled.div`
 `;
 export const HeaderText = styled.span`
     font-size: ${h2};
-    color: #fff;
+    color: ${color};
 
     @media(min-width: 1501px) {
         margin-left: 25%;
@@ -40,14 +40,14 @@ export const HeaderText = styled.span`
 export const HeaderLink = styled.span`
     font-size: ${span};
     margin-right: 20px;
-    color: #fff;
+    color: ${color};
 `;
 
 
 
 export const SubHeader = styled.div`
     height: 400px;
-    background-color: #616e7c;
+    background-color: ${secondary};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,12 +55,12 @@ export const SubHeader = styled.div`
 `;
 export const SubHeaderTitle = styled.span`
     font-size: ${h1};
-    color: #fff;
     margin-bottom: 10px;
+    color: #fff;
 `;
 export const SubHeaderText = styled.span`
     font-size: ${span};
-    color: #ddd;
+    color: #fff;
     width: 50%;
     text-align: center;
 
@@ -70,7 +70,7 @@ export const SubHeaderText = styled.span`
 `;
 export const ButtonBlock = styled.div`
     margin-top: 20px;
-    border: 1px solid #616e7c;
+    border: 1px solid ${secondary};
 `;
 
 
@@ -94,9 +94,9 @@ export const PriceBlock = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #1f2933;
-    border: 1px solid #616e7c;
-    box-shadow: 0 1px 5px 0 #616e7c;
+    background-color: ${primary};
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 5px 0 #ddd;
     border-radius: 5px;
 
     @media(max-width: 749px) {
@@ -123,10 +123,10 @@ export const PriceHeader = styled.div`
 export const PriceTitle = styled.span`
     font-size: ${h2};
     margin-bottom: 5px;
-    color: #fff;
+    color: ${color};
 `;
 export const PriceText = styled.span`
-    color: ${color};
+    color: ${gray};
 `;
 export const PriceBody = styled.div`
     display: flex;
@@ -136,7 +136,7 @@ export const PriceBody = styled.div`
 `;
 export const PriceValue = styled.span`
     font-size: ${h2};
-    color: #fff;
+    color: ${color};
 `;
 export const BadgeBlock = styled.div`
     margin-top: 15px;
@@ -144,12 +144,12 @@ export const BadgeBlock = styled.div`
 export const PriceDescription = styled.span`
     text-align: center;
     font-size: 18px;
-    color: #fff;
+    color: ${color};
 `;
 
 export const LineDiv = styled.div`
     width: 100%;
     height: 1px;
-    background-color: #616e7c;
+    background-color: #ddd;
     margin-top: 10px;
 `;
