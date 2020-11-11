@@ -1,80 +1,49 @@
 import styled from 'styled-components';
-import {h3, primary, secondary} from '../Config';
+import { h3, primary, secondary } from '../Config';
 
 export const Container = styled.div`
-    display: flex;
-    height: 100vh;
     background-color: ${primary};
+    display: flex;
+    background-color: #eee;
+`;
+export const MiddleContent = styled.div`
+    width: 100%;
 `;
 
 
 export const Header = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding: 10px;
-    height: 80px;
-    width: 500px;
+    height: 70px;
+    background-color: #fff;
+    box-shadow: 5px 0 1px 0 #000;
 `;
-export const HeaderInput = styled.input`
-    width: 90%;
-    background-color: #616e7c;
-    height: 40px;
-    border-radius: 25px;
-    border: none;
-    color: #fff;
-    padding: 10px;
-    font-size: 18px;
-
-    :focus {
-        outline: none;
-    }
-
-    ::placeholder {
-        color: #ccc;
-    }
+export const HeaderTitle = styled.span`
+    font-size: ${h3};
+    text-align: center;
 `;
+
 
 
 export const Menu = styled.div`
-    width: 250px;
+    width: 100px;
+    height: 100vh;
     background-color: ${secondary};
-    border-top-right-radius: 60px;
-    border-bottom-right-radius: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 `;
 export const MenuTop = styled.div`
     display: flex;
     flex-direction: column;
-    
+    margin-top: 20px;
 `;
 export const MenuBottom = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 100px;
-`;
-export const MenuTitle = styled.span`
-    font-size: 25px;
-    margin: 20px 0 50px 0;
-    padding-left: 20px;
-    color: #fff;
-`;
-export const MenuBtn = styled.a`
-    font-size: 22px;
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    height: 55px;
-    border-radius: 23px;
-    color: #fff;
-
-    :hover {
-        cursor: pointer;
-        background-color: #1334C8;
-    }
 `;
 export const Content = styled.div`
     display: flex;
@@ -85,18 +54,40 @@ export const Content = styled.div`
 
 
 
-export const MiddleContent = styled.div`
-    width: 60%;
+export const TableTitle = styled.span`
+    font-size: ${h3};
+    font-weight: bold;
+`;
+export const TableSubHeader = styled.div`
     display: flex;
-    flex-direction: column;
-    margin-left: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 ;
+`;
+export const DivInput = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    height: 30px;
+    border-radius: 5px;
+    padding: 10px;
+`;
+export const TableInput = styled.input`
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    height: 30px;
+
+    :focus {
+        outline: none;
+    }
 `;
 
-export const OrderBy = styled.div`
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-`;
+
+export const DivFilter = styled.div``;
+
+
 export const OrderByTitle = styled.span`
     font-size: 25px;
     font-weight: bold

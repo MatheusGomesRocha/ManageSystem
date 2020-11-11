@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 
 import { useMediaQuery } from 'react-responsive';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import SettingIcon from '../svg/settings';
 import BoxIcon from '../svg/caixa';
 import UserIcon from '../svg/users';
 import OrderIcon from '../svg/orders';
 import MessageIcon from '../svg/message';
 import DeleteIcon from '../svg/delete';
+import LogoutIcon from '../svg/logout';
+import MenuIcon from '../svg/menu';
+import SearchIcon from '../svg/search';
+import ArrowDownIcon from '../svg/arrow_down';
 
 import img from '../img/pc2.jpg';
 import Table from '@material-ui/core/Table';
@@ -17,22 +21,27 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Grow from '@material-ui/core/Grow';
 
 import { Button, Modal, Fade } from '@material-ui/core';
 
 import {
   Container,
+  MiddleContent,
 
   Header,
-  HeaderInput,
+  HeaderTitle,
 
   Menu,
   MenuTop,
   MenuBottom,
-  MenuTitle,
-  MenuBtn,
 
-  MiddleContent,
+  TableTitle,
+  TableSubHeader,
+  DivInput,
+  TableInput,
+
+  DivFilter,
 
   OrderBy,
   OrderByTitle,
@@ -63,8 +72,9 @@ let array = [
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.white,
+    color: '#aaa',
+    borderBottom: '1px solid #aaa'
   },
   body: {
     fontSize: 14,
@@ -79,9 +89,37 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const DefaultButton = withStyles((theme) => ({
-  
-}))
+const DefaultBtn = withStyles({
+  root: {
+    fontSize: 22,
+    marginTop: 15,
+    display: 'flex',
+    alignItems: 'center',
+    justifContent: 'center',
+    height: 55,
+    width: 55,
+    bordeRradius: 10,
+    color: '#fff',
+
+    '&:hover': {
+      backgroundColor: '#00CA80',
+    }
+  },
+})(Button);
+
+const FilterButton = withStyles({
+  root: {
+    height: 30,
+    backgroundColor: '#eee',
+    marginLeft: 10,
+    padding: 10,
+
+    '&:hover': {
+      backgroundColor: '#ddd',
+    }
+  },
+})(Button);
+
 
 export default function Management() {
   const [open, setOpen] = useState(false);
@@ -89,6 +127,8 @@ export default function Management() {
   const [productPrice, setProductPrice] = useState('');
   const [productQuantidade, setProductQuantidade] = useState('');
   const [products, setProducts] = useState([]);
+  const [path, setPath] = useState('Orders');
+  const [showInput, setShowInput] = useState(false);
 
   const handleOpen = (product) => {
     setOpen(true);
@@ -107,37 +147,52 @@ export default function Management() {
     return (
       <Menu>
         <MenuTop>
-          <MenuTitle>SeuMercado</MenuTitle>
+          <DefaultBtn style={{ marginBottom: 25, marginTop: 0 }}>
+            <MenuIcon />
+            {/* Orders */}
+          </DefaultBtn>
 
-          <MenuBtn>
+          <DefaultBtn style={{ backgroundColor: path == 'Orders' && '#00CA80' }} onClick={() => setPath('Orders')}>
             <OrderIcon />
-            Orders
-          </MenuBtn>
+            {/* Orders */}
+          </DefaultBtn>
 
-          <MenuBtn>
+          <DefaultBtn style={{ backgroundColor: path == 'Products' && '#00CA80' }} onClick={() => setPath('Products')}>
             <BoxIcon />
-            Products
-          </MenuBtn>
+            {/* Products */}
+          </DefaultBtn>
 
-          <MenuBtn>
+          <DefaultBtn style={{ backgroundColor: path == 'Users' && '#00CA80' }} onClick={() => setPath('Users')}>
             <UserIcon />
-            Users
-          </MenuBtn>
+            {/* Users */}
+          </DefaultBtn>
 
-          <MenuBtn>
+          <DefaultBtn style={{ backgroundColor: path == 'Messages' && '#00CA80' }} onClick={() => setPath('Messages')}>
             <MessageIcon />
-            Messages
-          </MenuBtn>
+            {/* Messages */}
+          </DefaultBtn>
         </MenuTop>
 
         <MenuBottom>
-          <MenuBtn>
+          <DefaultBtn style={{ backgroundColor: path == 'Settings' && '#00CA80' }} onClick={() => setPath('Settings')}>
             <SettingIcon />
-            Settings
-          </MenuBtn>
-          <MenuBtn>Log out</MenuBtn>
+            {/* Settings */}
+          </DefaultBtn>
+
+          <DefaultBtn>
+            <LogoutIcon />
+            {/* Log out */}
+          </DefaultBtn>
         </MenuBottom>
       </Menu>
+    );
+  }
+
+  const HeaderContent = () => {
+    return (
+      <Header>
+        <HeaderTitle>SeuMercado</HeaderTitle>
+      </Header>
     );
   }
 
@@ -175,10 +230,11 @@ export default function Management() {
             </ProductBlock>
 
             <BtnBlock>
-              <Button color="secondary" style={{width: '50%', height: '60px'}}> Ajuda </Button>
-              <Button color="secondary" style={{width: '50%', height: '60px'}}> Detalhes </Button>
+              <Button color="secondary" style={{ width: '50%', height: '60px' }}> Ajuda </Button>
+              <Button color="secondary" style={{ width: '50%', height: '60px' }}> Detalhes </Button>
             </BtnBlock>
           </div>
+
         </Fade>
       </Modal>
     );
@@ -186,31 +242,61 @@ export default function Management() {
 
   const TableContent = () => {
     return (
-      <TableContainer style={{ borderRadius: 30, margin: '60px 10% 100px 0', width: '100%', border: '5px solid #ddd' }} component={Paper}>
-        
-        <Table style={{ minWidth: 650 }} aria-label="simple table">
+      <TableContainer style={{ padding: 25, backgroundColor: '#fff', borderRadius: 10, margin: '60px 50px 100px 0', width: '90%' }} component={Paper}>
+
+        <TableTitle>List of {path}</TableTitle>
+
+        <TableSubHeader>
+          <DivInput>
+
+            <Button onClick={() => setShowInput(!showInput)} >
+              <SearchIcon />
+            </Button>
+
+            <Grow style={{ width: showInput ? '100%' : 0, marginLeft: showInput ? 10 : 0 }} timeout={1000} in={showInput}>
+              <TableInput placeholder="Search" />
+            </Grow>
+          </DivInput>
+
+          <DivFilter>
+
+            <FilterButton>
+              Filter by
+              <ArrowDownIcon />
+            </FilterButton>
+
+            <FilterButton>
+              Sort by
+              <ArrowDownIcon />
+            </FilterButton>
+
+          </DivFilter>
+
+        </TableSubHeader>
+
+        <Table style={{ minWidth: 650, marginRight: 150 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>User</StyledTableCell>
-              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Status</StyledTableCell>
-              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Subtotal</StyledTableCell>
-              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Order</StyledTableCell>
-              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>Adress</StyledTableCell>
-              <StyledTableCell align="center" style={{fontSize: 18, fontWeight: 'bold' }}>#</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>User</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Status</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Subtotal</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Order</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Adress</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>#</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {array.map((item) => (
               <StyledTableRow key={item.id}>
-                <TableCell style={{fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'space-around' }} component="th" scope="row">
+                <TableCell style={{ fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }} component="th" scope="row">
                   <UserImg src={img} />
                   {item.userName}
                 </TableCell>
-                <StyledTableCell align="center" style={{fontSize: 18 }}>Entregue</StyledTableCell>
-                <StyledTableCell align="center" style={{fontSize: 18 }}>R$ {item.orderPrice}</StyledTableCell>
-                <StyledTableCell align="center" style={{fontSize: 18 }}><Button style={{backgroundColor: '#0C4BCC'}} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
-                <StyledTableCell align="center" style={{fontSize: 18 }}><Button style={{backgroundColor: '#0C4BCC'}} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
-                <StyledTableCell align="center" style={{fontSize: 18 }}><Button onClick={() => handleOpen(item.products)} variant="contained" style={{ backgroundColor: '#FE5A74', color: '#fff' }}><DeleteIcon /></Button></StyledTableCell>
+                <StyledTableCell align="center" style={{ fontSize: 18 }}>Entregue</StyledTableCell>
+                <StyledTableCell align="center" style={{ fontSize: 18 }}>R$ {item.orderPrice}</StyledTableCell>
+                <StyledTableCell align="center" style={{ fontSize: 18 }}><Button style={{ backgroundColor: '#0C4BCC' }} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
+                <StyledTableCell align="center" style={{ fontSize: 18 }}><Button style={{ backgroundColor: '#0C4BCC' }} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
+                <StyledTableCell align="center" style={{ fontSize: 18 }}><Button onClick={() => handleOpen(item.products)} variant="contained" style={{ backgroundColor: '#FE5A74', color: '#fff' }}><DeleteIcon /></Button></StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
@@ -225,14 +311,15 @@ export default function Management() {
     <Container>
       <MenuDesktop />
 
-      <MiddleContent>
-        <OrderBy>
-          <OrderByTitle>Order by</OrderByTitle>
-        </OrderBy>
 
+      <MiddleContent>
+
+        <HeaderContent />
         <TableContent />
 
+
       </MiddleContent>
+
 
     </Container>
   );

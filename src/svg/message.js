@@ -1,6 +1,6 @@
 export default function Message() {
 	return(
-		<svg width="22px" height="22px" style={{marginRight: 10}} fill="#fff" version="1.1" id="Capa_1"x="0px" y="0px"
+		<svg width="25px" height="25px" fill="#fff" version="1.1" id="Capa_1"x="0px" y="0px"
 	 viewBox="0 0 512 512"  >
 <g>
 	<g>

@@ -82,12 +82,10 @@ function Home() {
 
     const DefaultModal = withStyles(() => ({
         root: {
-            width: isMobileDevice && '90%', 
-            margin: isMobileDevice && '0 5%', 
-            height: '100vh', 
             display: 'flex', 
             alignItems: 'center', 
-            justifyContent: 'center' 
+            justifyContent: 'center',
+            height: '100vh',
         }
     }))(Modal);
 
@@ -108,12 +106,12 @@ function Home() {
                 },
                 '&.Mui-focused fieldset': {
                     borderColor: '#4361EE',
-                },
-                color: '#aaa',
-                width: '100%', 
-                marginTop: 15, 
+                },                
             },
-    
+
+            color: '#aaa',
+            width: '100%', 
+            marginTop: 15, 
         },
     })(TextField);
 
@@ -173,6 +171,10 @@ function Home() {
                 BackdropProps={{
                     timeout: 1000,
                 }}
+                style={{display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                height: '100vh',}}
             >
                 <Fade in={open} style={{ backgroundColor: '#fff', height: 500, width: 400 }}>
                     <Form onSubmit={handleSubmit} style={{ marginTop: 0 }}>
@@ -231,12 +233,13 @@ function Home() {
                         We are responsible to create and launch your commerce on our App with the purpose to bring
                         more custormes and optimize the orders that your business will receive.
                     </SubTitle>
-                    <DefaultBtn onClick={handleOpen} style={{ width: isMobileDevice ? '50%' : '20%', marginRight: 0, marginTop: 20 }} variant="contained">
+                    <DefaultBtn onClick={handleOpen} style={{ width: '150px', marginRight: 0, marginTop: 20 }} variant="contained">
                         Login
                     </DefaultBtn>
+                    <ModalOpen />
+
                 </DivTitle>
 
-                <ModalOpen />
             </Header>
         );
     }
@@ -333,21 +336,18 @@ function Home() {
                         label="Full Name*"
                         variant="outlined"
                         id="custom-css-outlined-input"
-                        style={{ }}
                         type="text"
                     />
                     <CssTextField
                         label="Email*"
                         variant="outlined"
                         id="custom-css-outlined-input"
-                        style={{ width: '100%', marginTop: 15, }}
                         type="text"
                     />
                     <CssTextField
                         label="Message*"
                         variant="outlined"
                         id="custom-css-outlined-input"
-                        style={{ width: '100%', marginTop: 15, }}
                         type="text"
                     />
                     <DefaultBtn type="submit" style={{marginTop: 20, marginRight: 0, height: 50, borderRadius: 25}} variant="contained">

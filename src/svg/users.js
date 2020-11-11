@@ -1,7 +1,7 @@
 export default function Users() {
 	return (
 		<svg version="1.1" id="Capa_1"  x="0px" y="0px"
-			viewBox="0 0 477.869 477.869" width="22px" height="22px" fill="#fff" style={{marginRight: 10}}>
+			viewBox="0 0 477.869 477.869" width="25px" height="25px" fill="#fff">
 			<g>
 				<g>
 					<path d="M387.415,233.496c48.976-44.029,52.987-119.424,8.958-168.4C355.991,20.177,288.4,12.546,239.02,47.332

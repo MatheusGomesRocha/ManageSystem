@@ -1,7 +1,7 @@
 export default function Box() {
 	return (
 		<svg version="1.1" id="Capa_1" x="0px" y="0px"
-			viewBox="0 0 392.2 392.2" width="22px" height="22px" fill="#fff"  style={{marginRight: 10}}>
+			viewBox="0 0 392.2 392.2" width="25px" height="25px" fill="#fff" >
 			<g>
 				<g>
 					<path d="M386.9,99.4c-0.4-0.8-0.4-1.2-1.2-2c-0.4-0.8-1.2-1.2-2.4-1.6l-91.6-47.6L198.9,0.6c-1.6-0.8-3.6-0.8-5.2,0l-93.2,47.6
