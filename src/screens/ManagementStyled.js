@@ -5,6 +5,8 @@ export const Container = styled.div`
     background-color: ${primary};
     display: flex;
     background-color: #eee;
+
+    
 `;
 export const MiddleContent = styled.div`
     width: 100%;
@@ -17,7 +19,7 @@ export const Header = styled.div`
     align-items: center;
     height: 70px;
     background-color: #fff;
-    box-shadow: 5px 0 1px 0 #000;
+    box-shadow: 0 0 1px 0 #000;
 `;
 export const HeaderTitle = styled.span`
     font-size: ${h3};
@@ -28,7 +30,7 @@ export const HeaderTitle = styled.span`
 
 export const Menu = styled.div`
     width: 100px;
-    height: 100vh;
+    height: auto;
     background-color: ${secondary};
     display: flex;
     flex-direction: column;
@@ -86,7 +88,6 @@ export const TableInput = styled.input`
 
 
 export const DivFilter = styled.div``;
-
 
 export const OrderByTitle = styled.span`
     font-size: 25px;

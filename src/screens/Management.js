@@ -113,6 +113,7 @@ const FilterButton = withStyles({
     backgroundColor: '#eee',
     marginLeft: 10,
     padding: 10,
+    color: '#888',
 
     '&:hover': {
       backgroundColor: '#ddd',
@@ -242,7 +243,7 @@ export default function Management() {
 
   const TableContent = () => {
     return (
-      <TableContainer style={{ padding: 25, backgroundColor: '#fff', borderRadius: 10, margin: '60px 50px 100px 0', width: '90%' }} component={Paper}>
+      <TableContainer style={{ padding: 25, backgroundColor: '#fff', borderRadius: 10, margin: isMobileDevice ? '60px 5% 100px 5%' : '50px 3% 50px 3%', width: isMobileDevice ? '80%' : '90%' }} component={Paper}>
 
         <TableTitle>List of {path}</TableTitle>
 
@@ -274,7 +275,7 @@ export default function Management() {
 
         </TableSubHeader>
 
-        <Table style={{ minWidth: 650, marginRight: 150 }} aria-label="simple table">
+        <Table style={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>User</StyledTableCell>
@@ -309,7 +310,11 @@ export default function Management() {
 
   return (
     <Container>
-      <MenuDesktop />
+
+      {isMobileDevice ?
+        null
+        : <MenuDesktop />
+      }
 
 
       <MiddleContent>
