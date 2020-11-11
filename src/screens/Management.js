@@ -12,6 +12,7 @@ import LogoutIcon from '../svg/logout';
 import MenuIcon from '../svg/menu';
 import SearchIcon from '../svg/search';
 import ArrowDownIcon from '../svg/arrow_down';
+import PlusIcon from '../svg/plus';
 
 import img from '../img/pc2.jpg';
 import Table from '@material-ui/core/Table';
@@ -36,6 +37,7 @@ import {
   MenuTop,
   MenuBottom,
 
+  TableHeader,
   TableTitle,
   TableSubHeader,
   DivInput,
@@ -77,7 +79,7 @@ const StyledTableCell = withStyles((theme) => ({
     borderBottom: '1px solid #aaa'
   },
   body: {
-    fontSize: 14,
+    fontSize: 18,
   },
 }))(TableCell);
 
@@ -89,7 +91,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const DefaultBtn = withStyles({
+const MenuBtn = withStyles({
   root: {
     fontSize: 22,
     marginTop: 15,
@@ -107,7 +109,7 @@ const DefaultBtn = withStyles({
   },
 })(Button);
 
-const FilterButton = withStyles({
+const FilterBtn = withStyles({
   root: {
     height: 30,
     backgroundColor: '#eee',
@@ -121,15 +123,58 @@ const FilterButton = withStyles({
   },
 })(Button);
 
+const TableBtn = withStyles({
+  root: {
+    backgroundColor: '#0C4BCC',
+  }
+})(Button);
+
+const TableDeleteBtn = withStyles({
+  root: {
+    backgroundColor: '#FE5A74',
+  }
+})(Button);
 
 export default function Management() {
   const [open, setOpen] = useState(false);
-  const [productName, setProductName] = useState('');
-  const [productPrice, setProductPrice] = useState('');
-  const [productQuantidade, setProductQuantidade] = useState('');
   const [products, setProducts] = useState([]);
   const [path, setPath] = useState('Orders');
   const [showInput, setShowInput] = useState(false);
+
+  const isMobileDevice = useMediaQuery({
+    query: '(max-width: 750px)'
+  });
+
+
+  // Container de toda a Tabela - Está aqui pq precisa usar o isMobileDevice para deixar responsiva
+  const TableBlock = withStyles({
+    root: {
+      padding: 25,
+      backgroundColor: '#fff',
+      borderRadius: 10,
+      margin: isMobileDevice ? '60px 5% 100px 5%' : '50px 3% 50px 3%',
+      width: isMobileDevice ? '80%' : '90%'
+    }
+  })(TableContainer);
+
+  const AddBtn = withStyles({
+    root: {
+      backgroundColor: '#00CA80',
+      padding: 20,
+      fontSize: 16,
+      height: isMobileDevice ? 50 : 40,
+      borderRadius: 10,
+      width: '200px',
+      color: '#fff',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+
+      '&:hover': {
+        backgroundColor: '#008353',
+      }
+    }
+  })(Button);
 
   const handleOpen = (product) => {
     setOpen(true);
@@ -140,50 +185,46 @@ export default function Management() {
     setOpen(false);
   };
 
-  const isMobileDevice = useMediaQuery({
-    query: '(max-width: 750px)'
-  });
-
   const MenuDesktop = () => {
     return (
       <Menu>
         <MenuTop>
-          <DefaultBtn style={{ marginBottom: 25, marginTop: 0 }}>
+          <MenuBtn style={{ marginBottom: 25, marginTop: 0 }}>
             <MenuIcon />
             {/* Orders */}
-          </DefaultBtn>
+          </MenuBtn>
 
-          <DefaultBtn style={{ backgroundColor: path == 'Orders' && '#00CA80' }} onClick={() => setPath('Orders')}>
+          <MenuBtn style={{ backgroundColor: path == 'Orders' && '#00CA80' }} onClick={() => setPath('Orders')}>
             <OrderIcon />
             {/* Orders */}
-          </DefaultBtn>
+          </MenuBtn>
 
-          <DefaultBtn style={{ backgroundColor: path == 'Products' && '#00CA80' }} onClick={() => setPath('Products')}>
+          <MenuBtn style={{ backgroundColor: path == 'Products' && '#00CA80' }} onClick={() => setPath('Products')}>
             <BoxIcon />
             {/* Products */}
-          </DefaultBtn>
+          </MenuBtn>
 
-          <DefaultBtn style={{ backgroundColor: path == 'Users' && '#00CA80' }} onClick={() => setPath('Users')}>
+          <MenuBtn style={{ backgroundColor: path == 'Users' && '#00CA80' }} onClick={() => setPath('Users')}>
             <UserIcon />
             {/* Users */}
-          </DefaultBtn>
+          </MenuBtn>
 
-          <DefaultBtn style={{ backgroundColor: path == 'Messages' && '#00CA80' }} onClick={() => setPath('Messages')}>
+          <MenuBtn style={{ backgroundColor: path == 'Messages' && '#00CA80' }} onClick={() => setPath('Messages')}>
             <MessageIcon />
             {/* Messages */}
-          </DefaultBtn>
+          </MenuBtn>
         </MenuTop>
 
         <MenuBottom>
-          <DefaultBtn style={{ backgroundColor: path == 'Settings' && '#00CA80' }} onClick={() => setPath('Settings')}>
+          <MenuBtn style={{ backgroundColor: path == 'Settings' && '#00CA80' }} onClick={() => setPath('Settings')}>
             <SettingIcon />
             {/* Settings */}
-          </DefaultBtn>
+          </MenuBtn>
 
-          <DefaultBtn>
+          <MenuBtn>
             <LogoutIcon />
             {/* Log out */}
-          </DefaultBtn>
+          </MenuBtn>
         </MenuBottom>
       </Menu>
     );
@@ -243,9 +284,17 @@ export default function Management() {
 
   const TableContent = () => {
     return (
-      <TableContainer style={{ padding: 25, backgroundColor: '#fff', borderRadius: 10, margin: isMobileDevice ? '60px 5% 100px 5%' : '50px 3% 50px 3%', width: isMobileDevice ? '80%' : '90%' }} component={Paper}>
+      <TableBlock component={Paper}>
 
-        <TableTitle>List of {path}</TableTitle>
+        <TableHeader>
+          <TableTitle>List of {path}</TableTitle>
+
+          <AddBtn>
+            <PlusIcon />
+            New Product
+          </AddBtn>
+
+        </TableHeader>
 
         <TableSubHeader>
           <DivInput>
@@ -261,15 +310,15 @@ export default function Management() {
 
           <DivFilter>
 
-            <FilterButton>
+            <FilterBtn>
               Filter by
               <ArrowDownIcon />
-            </FilterButton>
+            </FilterBtn>
 
-            <FilterButton>
+            <FilterBtn>
               Sort by
               <ArrowDownIcon />
-            </FilterButton>
+            </FilterBtn>
 
           </DivFilter>
 
@@ -278,33 +327,54 @@ export default function Management() {
         <Table style={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>User</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Status</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Subtotal</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Order</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>Adress</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontSize: 18, fontWeight: 'bold' }}>#</StyledTableCell>
+
+              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>User</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Status</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Subtotal</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Order</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Adress</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>#</StyledTableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>
             {array.map((item) => (
               <StyledTableRow key={item.id}>
+
                 <TableCell style={{ fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }} component="th" scope="row">
                   <UserImg src={img} />
                   {item.userName}
                 </TableCell>
-                <StyledTableCell align="center" style={{ fontSize: 18 }}>Entregue</StyledTableCell>
-                <StyledTableCell align="center" style={{ fontSize: 18 }}>R$ {item.orderPrice}</StyledTableCell>
-                <StyledTableCell align="center" style={{ fontSize: 18 }}><Button style={{ backgroundColor: '#0C4BCC' }} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
-                <StyledTableCell align="center" style={{ fontSize: 18 }}><Button style={{ backgroundColor: '#0C4BCC' }} onClick={() => handleOpen(item.products)} variant="contained" color="primary"><DeleteIcon /></Button></StyledTableCell>
-                <StyledTableCell align="center" style={{ fontSize: 18 }}><Button onClick={() => handleOpen(item.products)} variant="contained" style={{ backgroundColor: '#FE5A74', color: '#fff' }}><DeleteIcon /></Button></StyledTableCell>
+
+                <StyledTableCell align="center">Entregue</StyledTableCell>
+
+                <StyledTableCell align="center">R$ {item.orderPrice}</StyledTableCell>
+
+                <StyledTableCell align="center">
+                  <TableBtn onClick={() => handleOpen(item.products)} variant="contained">
+                    <DeleteIcon />
+                  </TableBtn>
+                </StyledTableCell>
+
+                <StyledTableCell align="center">
+                  <TableBtn onClick={() => handleOpen(item.products)} variant="contained">
+                    <DeleteIcon />
+                  </TableBtn>
+                </StyledTableCell>
+
+                <StyledTableCell align="center">
+                  <TableDeleteBtn onClick={() => handleOpen(item.products)} variant="contained">
+                    <DeleteIcon />
+                  </TableDeleteBtn>
+                </StyledTableCell>
+
               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
         <ModalItem />
 
-      </TableContainer>
+      </TableBlock>
     );
   }
 
@@ -316,15 +386,10 @@ export default function Management() {
         : <MenuDesktop />
       }
 
-
       <MiddleContent>
-
         <HeaderContent />
         <TableContent />
-
-
       </MiddleContent>
-
 
     </Container>
   );

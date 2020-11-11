@@ -5,8 +5,6 @@ export const Container = styled.div`
     background-color: ${primary};
     display: flex;
     background-color: #eee;
-
-    
 `;
 export const MiddleContent = styled.div`
     width: 100%;
@@ -56,15 +54,32 @@ export const Content = styled.div`
 
 
 
+export const TableHeader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media(max-width: 750px) {
+        flex-direction: column;
+    }
+`;
 export const TableTitle = styled.span`
     font-size: ${h3};
     font-weight: bold;
+
+    @media(max-width: 750px) {
+        margin-bottom: 15px;
+    }
 `;
 export const TableSubHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0 ;
+    margin: 15px 0;
+
+    @media(max-width: 750px) {
+        flex-direction: column;
+    }
 `;
 export const DivInput = styled.div`
     display: flex;
@@ -74,6 +89,10 @@ export const DivInput = styled.div`
     height: 30px;
     border-radius: 5px;
     padding: 10px;
+
+    @media(max-width: 750px) {
+        margin-bottom: 15px;
+    }
 `;
 export const TableInput = styled.input`
     border: none;

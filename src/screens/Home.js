@@ -51,10 +51,6 @@ import {
     FormPurple,
 } from './HomeStyled';
 
-
-
-
-
 function Home() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -79,15 +75,6 @@ function Home() {
             }
         },
     }))(Button);
-
-    const DefaultModal = withStyles(() => ({
-        root: {
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            height: '100vh',
-        }
-    }))(Modal);
 
     const CssTextField = withStyles({
         root: {
