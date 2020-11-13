@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useMediaQuery } from 'react-responsive';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +13,11 @@ import MenuIcon from '../svg/menu';
 import SearchIcon from '../svg/search';
 import ArrowDownIcon from '../svg/arrow_down';
 import PlusIcon from '../svg/plus';
-
+import EnterIcon from '../svg/enter';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import img from '../img/pc2.jpg';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -24,7 +28,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
 
-import { Button, Modal, Fade } from '@material-ui/core';
+import { Button, Modal, Fade, TextField } from '@material-ui/core';
 
 import {
   Container,
@@ -56,10 +60,10 @@ import {
   ProductBlock,
   ProductItem,
   ProductQtd,
-  BtnBlock
-} from './ManagementStyled';
+  BtnBlock,
 
-const drawerWidth = 240;
+  Form
+} from './ManagementStyled';
 
 let array = [
   { id: '1', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: [{ id: '2', name: 'Bife', price: 28.00, quantidade: 3 }, { id: '5', name: 'SobreCoxa', price: 28.00, quantidade: 3 }], adress: { rua: '1', bairro: '1' } },
@@ -70,7 +74,25 @@ let array = [
   { id: '6', userName: 'teste5', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: { id: '6', name: 'SobreCoxa', price: '28,00', quantidade: '3' }, adress: { rua: '6', bairro: '6' } },
   { id: '7', userName: 'teste6', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: { id: '7', name: 'SobreCoxa', price: '28,00', quantidade: '3' }, adress: { rua: '7', bairro: '7' } },
   { id: '8', userName: 'teste7', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: { id: '8', name: 'SobreCoxa', price: '28,00', quantidade: '3' }, adress: { rua: '8', bairro: '8' } },
+];
+
+let array1 = [
+  { id: '1', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: [{ id: '2', name: 'Bife', price: 28.00, quantidade: 3 }, { id: '5', name: 'SobreCoxa', price: 28.00, quantidade: 3 }], adress: { rua: '1', bairro: '1' } },
+  { id: '2', userName: 'teste1', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: { id: '9', name: 'Flocos', price: '14,00', quantidade: '4' }, adress: { rua: '2', bairro: '2' } },
 ]
+
+
+let array2 = [
+  { id: '1', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: [{ id: '2', name: 'Bife', price: 28.00, quantidade: 3 }, { id: '5', name: 'SobreCoxa', price: 28.00, quantidade: 3 }], adress: { rua: '1', bairro: '1' } },
+]
+
+let array3 = [
+  { id: '1', userName: 'teste', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: [{ id: '2', name: 'Bife', price: 28.00, quantidade: 3 }, { id: '5', name: 'SobreCoxa', price: 28.00, quantidade: 3 }], adress: { rua: '1', bairro: '1' } },
+  { id: '2', userName: 'teste1', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: { id: '9', name: 'Flocos', price: '14,00', quantidade: '4' }, adress: { rua: '2', bairro: '2' } },
+  { id: '3', userName: 'teste2', userImg: '../img/pc1.jpg', orderPrice: '87,50', products: { id: '3', name: 'SobreCoxa', price: '28,00', quantidade: '3' }, adress: { rua: '3', bairro: '3' } },
+]
+
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -135,16 +157,63 @@ const TableDeleteBtn = withStyles({
   }
 })(Button);
 
+const CssTextField = withStyles({
+  root: {
+    '& label': {
+      color: '#aaa',
+    },
+    '& label.Mui-focused': {
+      color: '#4361EE',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#aaa',
+      },
+      '&:hover fieldset': {
+        borderColor: '#aaa',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#4361EE',
+      },
+    },
+
+    color: '#aaa',
+    width: '100%',
+  },
+})(TextField);
+
+const SelectBy = withStyles({
+  root: {
+    minWidth: 100,
+    backgroundColor: '#eee'
+  }
+})(Select);
 export default function Management() {
   const [open, setOpen] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
+  const [sort, setSort] = useState('');
   const [products, setProducts] = useState([]);
   const [path, setPath] = useState('Orders');
   const [showInput, setShowInput] = useState(false);
+  const [mainArray, setMainArray] = useState([]);
+
+  useEffect(() => {
+    setMainArray(array);
+
+    if (path == 'Orders') {
+      setMainArray(array);
+    } else if (path == 'Products') {
+      setMainArray(array1);
+    } else if (path == 'Users') {
+      setMainArray(array2);
+    } else if (path == 'Messages') {
+      setMainArray(array3);
+    }
+  }, [path]);
 
   const isMobileDevice = useMediaQuery({
     query: '(max-width: 750px)'
   });
-
 
   // Container de toda a Tabela - Está aqui pq precisa usar o isMobileDevice para deixar responsiva
   const TableBlock = withStyles({
@@ -153,7 +222,8 @@ export default function Management() {
       backgroundColor: '#fff',
       borderRadius: 10,
       margin: isMobileDevice ? '60px 5% 100px 5%' : '50px 3% 50px 3%',
-      width: isMobileDevice ? '80%' : '90%'
+      width: isMobileDevice ? '80%' : '90%',
+      minHeight: 800,
     }
   })(TableContainer);
 
@@ -176,6 +246,14 @@ export default function Management() {
     }
   })(Button);
 
+  const currentScreen = (e) => {
+    setPath(e);
+  }
+
+  const handleSort = (event) => {
+    setSort(event.target.value);
+  };
+
   const handleOpen = (product) => {
     setOpen(true);
     setProducts(product);
@@ -183,6 +261,7 @@ export default function Management() {
 
   const handleClose = () => {
     setOpen(false);
+    setOpenAdd(false);
   };
 
   const MenuDesktop = () => {
@@ -194,29 +273,29 @@ export default function Management() {
             {/* Orders */}
           </MenuBtn>
 
-          <MenuBtn style={{ backgroundColor: path == 'Orders' && '#00CA80' }} onClick={() => setPath('Orders')}>
+          <MenuBtn style={{ backgroundColor: path == 'Orders' && '#00CA80' }} onClick={() => currentScreen('Orders')}>
             <OrderIcon />
             {/* Orders */}
           </MenuBtn>
 
-          <MenuBtn style={{ backgroundColor: path == 'Products' && '#00CA80' }} onClick={() => setPath('Products')}>
+          <MenuBtn style={{ backgroundColor: path == 'Products' && '#00CA80' }} onClick={() => currentScreen('Products')}>
             <BoxIcon />
             {/* Products */}
           </MenuBtn>
 
-          <MenuBtn style={{ backgroundColor: path == 'Users' && '#00CA80' }} onClick={() => setPath('Users')}>
+          <MenuBtn style={{ backgroundColor: path == 'Users' && '#00CA80' }} onClick={() => currentScreen('Users')}>
             <UserIcon />
             {/* Users */}
           </MenuBtn>
 
-          <MenuBtn style={{ backgroundColor: path == 'Messages' && '#00CA80' }} onClick={() => setPath('Messages')}>
+          <MenuBtn style={{ backgroundColor: path == 'Messages' && '#00CA80' }} onClick={() => currentScreen('Messages')}>
             <MessageIcon />
             {/* Messages */}
           </MenuBtn>
         </MenuTop>
 
         <MenuBottom>
-          <MenuBtn style={{ backgroundColor: path == 'Settings' && '#00CA80' }} onClick={() => setPath('Settings')}>
+          <MenuBtn style={{ backgroundColor: path == 'Settings' && '#00CA80' }} onClick={() => currentScreen('Settings')}>
             <SettingIcon />
             {/* Settings */}
           </MenuBtn>
@@ -238,6 +317,7 @@ export default function Management() {
     );
   }
 
+  // Modal para mostrar as infos dos pedidos
   const ModalItem = () => {
     return (
       <Modal
@@ -282,6 +362,42 @@ export default function Management() {
     );
   }
 
+  // Modal para mostrar form de adicionar produtos
+  const ModalAddItem = () => {
+    return (
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openAdd}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 1000,
+        }}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+
+      >
+        <Fade in={openAdd} style={{
+          backgroundColor: '#fff', height: 300, width: '50%', display: 'grid', gridGap: 15, gridTemplateColumns: '1fr', gridTemplateRows: '2 1fr', alignItems: 'center',
+          justifyContent: 'center', padding: 25
+        }}>
+
+          <Form>
+            <CssTextField style={{gridArea: '1 / 1 / 2 / 6'}} variant="outlined" type="text" label="Product Name*" />
+            <CssTextField style={{gridArea: '2 / 1 / 3 / 3'}} variant="outlined" type="text" label="Type*" />
+            <CssTextField style={{gridArea: '2 / 4 / 3 / 6'}} variant="outlined" type="number" label="Price*" />
+            <CssTextField style={{gridArea: '3 / 1 / 4 / 6'}} variant="outlined" type="textfield" label="Description*" />
+
+            <AddBtn style={{gridArea: '5 / 1 / 6 / 6', width:'100%'}}>
+              Add Product
+            </AddBtn>
+          </Form>
+
+        </Fade>
+      </Modal>
+    );
+  }
+
   const TableContent = () => {
     return (
       <TableBlock component={Paper}>
@@ -289,10 +405,12 @@ export default function Management() {
         <TableHeader>
           <TableTitle>List of {path}</TableTitle>
 
-          <AddBtn>
+          <AddBtn onClick={() => setOpenAdd(true)}>
             <PlusIcon />
             New Product
           </AddBtn>
+
+          <ModalAddItem />
 
         </TableHeader>
 
@@ -308,19 +426,29 @@ export default function Management() {
             </Grow>
           </DivInput>
 
-          <DivFilter>
 
-            <FilterBtn>
-              Filter by
-              <ArrowDownIcon />
-            </FilterBtn>
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="outlined-age-native-simple">Sort By</InputLabel>
+            <SelectBy
+              native
+              value={sort}
+              onChange={handleSort}
+              label="Age"
+              inputProps={{
+                name: 'Sort',
+                id: 'outlined-age-native-simple',
+              }}
+            >
+              <option aria-label="None" value="" />
+              <option value="user">User</option>
+              <option value="status">Status</option>
+              <option value="subtotal">Subtotal</option>
+              <option value="Date">Subtotal</option>
+            </SelectBy>
+          </FormControl>
 
-            <FilterBtn>
-              Sort by
-              <ArrowDownIcon />
-            </FilterBtn>
 
-          </DivFilter>
+
 
         </TableSubHeader>
 
@@ -338,13 +466,13 @@ export default function Management() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {array.map((item) => (
+            {mainArray.map((item) => (
               <StyledTableRow key={item.id}>
 
-                <TableCell style={{ fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }} component="th" scope="row">
+                <StyledTableCell style={{ fontSize: 18 }}>
                   <UserImg src={img} />
                   {item.userName}
-                </TableCell>
+                </StyledTableCell>
 
                 <StyledTableCell align="center">Entregue</StyledTableCell>
 
@@ -352,13 +480,13 @@ export default function Management() {
 
                 <StyledTableCell align="center">
                   <TableBtn onClick={() => handleOpen(item.products)} variant="contained">
-                    <DeleteIcon />
+                    <EnterIcon />
                   </TableBtn>
                 </StyledTableCell>
 
                 <StyledTableCell align="center">
                   <TableBtn onClick={() => handleOpen(item.products)} variant="contained">
-                    <DeleteIcon />
+                    <EnterIcon />
                   </TableBtn>
                 </StyledTableCell>
 

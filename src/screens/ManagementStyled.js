@@ -154,3 +154,8 @@ export const BtnBlock = styled.div`
     align-items: flex-end;
     justify-content: space-around;
 `;
+
+export const Form = styled.div`
+    height: 800px;
+    backgroundColor: red;
+`;

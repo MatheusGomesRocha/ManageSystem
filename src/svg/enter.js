@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 490.667 490.667" style="enable-background:new 0 0 490.667 490.667;" xml:space="preserve">
+export default function Enter() {
+	return(
+<svg version="1.1" width="25px" height="25px" fill="#fff" id="Capa_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
+	 viewBox="0 0 490.667 490.667">
 <g>
 	<g>
 		<path d="M437.333,0H202.667c-29.397,0-53.333,23.936-53.333,53.333v128c0,5.888,4.779,10.667,10.667,10.667
@@ -55,3 +55,6 @@
 <g>
 </g>
 </svg>
+
+	);
+}
