@@ -193,7 +193,7 @@ export default function Management() {
   const [open, setOpen] = useState(false);
   const [openAdress, setOpenAdress] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('subtotal');
   const [products, setProducts] = useState([]);
   const [adress, setAdress] = useState([]);
   const [path, setPath] = useState('Orders');
@@ -202,13 +202,25 @@ export default function Management() {
 
 
   useEffect(() => {
-    const getOrders = async () => {
-      let res = await Api.getOrders();
-      setMainArray(res);
+    if (path == 'Orders') {
+      const getOrders = async () => {
+        let res = await Api.getOrders(sort);
+        setMainArray(res);
+      }
+
+      getOrders();
+
+    } else if (path == 'Products') {
+      const getProducts = async () => {
+        let res1 = await Api.getProducts();
+        setMainArray(res1);
+      }
+
+      getProducts();
     }
 
-    getOrders();
-  }, [])
+  }, [sort, path])
+
 
   const isMobileDevice = useMediaQuery({
     query: '(max-width: 750px)'
@@ -449,10 +461,10 @@ export default function Management() {
               }}
             >
               <option aria-label="None" value="" />
-              <option value="user">User</option>
+              <option value="userName">User</option>
               <option value="status">Status</option>
               <option value="subtotal">Subtotal</option>
-              <option value="Date">Subtotal</option>
+              <option value="quantidadeTotal">Quantidade</option>
             </SelectBy>
           </FormControl>
 
@@ -465,53 +477,105 @@ export default function Management() {
           <TableHead>
             <TableRow>
 
-              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>User</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Status</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Subtotal</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Order</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Adress</StyledTableCell>
-              <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>#</StyledTableCell>
+              {path == 'Orders' &&
+                <>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>User</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Status</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Subtotal</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Order</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Adress</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>#</StyledTableCell>
+                </>
+              }
+
+              {path == 'Products' &&
+                <>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Product</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Id</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Price</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>Type</StyledTableCell>
+                  <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>#</StyledTableCell>
+                </>
+              }
+
+
+
 
             </TableRow>
           </TableHead>
           <TableBody>
             {mainArray.map((item) => (
-              <StyledTableRow key={item.id}>
+              path == 'Orders' ?
+                <TableOrder data={item} />
+                :
+                path == 'Products' &&
+                <TableProduct data={item} />
 
-                <StyledTableCell style={{ fontSize: 18 }}>
-                  <UserImg src={img} />
-                  {item.userName}
-                </StyledTableCell>
 
-                <StyledTableCell align="center">Entregue</StyledTableCell>
-
-                <StyledTableCell align="center">R$ {item.subtotal.toFixed(2)}</StyledTableCell>
-
-                <StyledTableCell align="center">
-                  <TableBtn onClick={() => handleOpen(item.products)} variant="contained">
-                    <EnterIcon />
-                  </TableBtn>
-                </StyledTableCell>
-
-                <StyledTableCell align="center">
-                  <TableBtn onClick={() => handleAdress(item.adress)} variant="contained">
-                    <EnterIcon />
-                  </TableBtn>
-                </StyledTableCell>
-
-                <StyledTableCell align="center">
-                  <TableDeleteBtn onClick={() => handleOpen(item.products)} variant="contained">
-                    <DeleteIcon />
-                  </TableDeleteBtn>
-                </StyledTableCell>
-
-              </StyledTableRow>
             ))}
           </TableBody>
         </Table>
         <ModalItem />
 
-      </TableBlock>
+      </TableBlock >
+    );
+  }
+
+  const TableOrder = ({ data }) => {
+    return (
+      <StyledTableRow key={data.id}>
+
+        <StyledTableCell align="center" style={{ fontWeight: 'bold' }}>
+          {data.userName}
+        </StyledTableCell>
+
+        <StyledTableCell align="center">{data.status}</StyledTableCell>
+
+        <StyledTableCell align="center">R$ {data.subtotal}</StyledTableCell>
+
+        <StyledTableCell align="center">
+          <TableBtn onClick={() => handleOpen(data.products)} variant="contained">
+            <EnterIcon />
+          </TableBtn>
+        </StyledTableCell>
+
+        <StyledTableCell align="center">
+          <TableBtn onClick={() => handleAdress(data.adress)} variant="contained">
+            <EnterIcon />
+          </TableBtn>
+        </StyledTableCell>
+
+        <StyledTableCell align="center">
+          <TableDeleteBtn onClick={() => handleOpen(data.products)} variant="contained">
+            <DeleteIcon />
+          </TableDeleteBtn>
+        </StyledTableCell>
+
+      </StyledTableRow>
+    );
+  }
+
+  const TableProduct = ({ data }) => {
+    return (
+      <StyledTableRow key={data.id}>
+
+        <StyledTableCell style={{ fontSize: 18 }}>
+          {data.name}
+        </StyledTableCell>
+
+        <StyledTableCell align="center">{data.id}</StyledTableCell>
+
+        <StyledTableCell align="center">R$ {data.price}</StyledTableCell>
+
+        <StyledTableCell align="center"> {data.type}</StyledTableCell>
+
+        <StyledTableCell align="center">
+          <TableDeleteBtn onClick={() => handleOpen(data.products)} variant="contained">
+            <DeleteIcon />
+          </TableDeleteBtn>
+        </StyledTableCell>
+
+      </StyledTableRow>
     );
   }
 
