@@ -137,12 +137,12 @@ export const ProductBlock = styled.div`
     min-height: 100px;
     justify-content: center;
     padding-left: 20px;
-    border-bottom: 1px solid #ddd;
 `;
 export const ProductItem = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+    padding: 10px;
 `;
 export const ProductQtd = styled.span`
     font-size: 20px;
@@ -153,6 +153,7 @@ export const BtnBlock = styled.div`
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-around;
+    margin-top: 10px;
 `;
 
 export const Form = styled.div`

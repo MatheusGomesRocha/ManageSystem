@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import Api from '../Api';
 import { useMediaQuery } from 'react-responsive';
 import { withStyles } from '@material-ui/core/styles';
 import SettingIcon from '../svg/settings';
@@ -188,28 +188,27 @@ const SelectBy = withStyles({
     backgroundColor: '#eee'
   }
 })(Select);
+
 export default function Management() {
   const [open, setOpen] = useState(false);
+  const [openAdress, setOpenAdress] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
   const [sort, setSort] = useState('');
   const [products, setProducts] = useState([]);
+  const [adress, setAdress] = useState([]);
   const [path, setPath] = useState('Orders');
   const [showInput, setShowInput] = useState(false);
   const [mainArray, setMainArray] = useState([]);
 
-  useEffect(() => {
-    setMainArray(array);
 
-    if (path == 'Orders') {
-      setMainArray(array);
-    } else if (path == 'Products') {
-      setMainArray(array1);
-    } else if (path == 'Users') {
-      setMainArray(array2);
-    } else if (path == 'Messages') {
-      setMainArray(array3);
+  useEffect(() => {
+    const getOrders = async () => {
+      let res = await Api.getOrders();
+      setMainArray(res);
     }
-  }, [path]);
+
+    getOrders();
+  }, [])
 
   const isMobileDevice = useMediaQuery({
     query: '(max-width: 750px)'
@@ -232,8 +231,7 @@ export default function Management() {
       backgroundColor: '#00CA80',
       padding: 20,
       fontSize: 16,
-      height: isMobileDevice ? 50 : 40,
-      borderRadius: 10,
+      height: 50,
       width: '200px',
       color: '#fff',
       display: 'flex',
@@ -252,6 +250,11 @@ export default function Management() {
 
   const handleSort = (event) => {
     setSort(event.target.value);
+  };
+
+  const handleAdress = (adress) => {
+    setOpenAdress(true);
+    setAdress(adress);
   };
 
   const handleOpen = (product) => {
@@ -352,14 +355,20 @@ export default function Management() {
             </ProductBlock>
 
             <BtnBlock>
-              <Button color="secondary" style={{ width: '50%', height: '60px' }}> Ajuda </Button>
-              <Button color="secondary" style={{ width: '50%', height: '60px' }}> Detalhes </Button>
+              <Button color="secondary" variant="contained" style={{ width: '50%', height: '60px' }}> Ajuda </Button>
+              <Button color="secondary" variant="contained" style={{ width: '50%', height: '60px' }}> Detalhes </Button>
             </BtnBlock>
           </div>
 
         </Fade>
       </Modal>
     );
+  }
+
+  const ModalAdress = () => {
+    return (
+      null
+    )
   }
 
   // Modal para mostrar form de adicionar produtos
@@ -378,17 +387,17 @@ export default function Management() {
 
       >
         <Fade in={openAdd} style={{
-          backgroundColor: '#fff', height: 300, width: '50%', display: 'grid', gridGap: 15, gridTemplateColumns: '1fr', gridTemplateRows: '2 1fr', alignItems: 'center',
+          backgroundColor: '#fff', height: 300, width: '50%', display: 'grid', gridGap: 15, gridTemplateColumns: 'repeat(5, 1fr)', gridTemplateRows: 'repeat(5, 1fr)', alignItems: 'center',
           justifyContent: 'center', padding: 25
         }}>
 
           <Form>
-            <CssTextField style={{gridArea: '1 / 1 / 2 / 6'}} variant="outlined" type="text" label="Product Name*" />
-            <CssTextField style={{gridArea: '2 / 1 / 3 / 3'}} variant="outlined" type="text" label="Type*" />
-            <CssTextField style={{gridArea: '2 / 4 / 3 / 6'}} variant="outlined" type="number" label="Price*" />
-            <CssTextField style={{gridArea: '3 / 1 / 4 / 6'}} variant="outlined" type="textfield" label="Description*" />
+            <CssTextField style={{ gridArea: '1 / 1 / 2 / 6' }} variant="outlined" type="text" label="Product Name*" />
+            <CssTextField style={{ gridArea: '2 / 1 / 3 / 3' }} variant="outlined" type="text" label="Type*" />
+            <CssTextField style={{ gridArea: '2 / 4 / 3 / 6' }} variant="outlined" type="number" label="Price*" />
+            <CssTextField style={{ gridArea: '3 / 1 / 4 / 6' }} variant="outlined" type="textfield" label="Description*" />
 
-            <AddBtn style={{gridArea: '5 / 1 / 6 / 6', width:'100%'}}>
+            <AddBtn style={{ gridArea: '5 / 1 / 6 / 6', width: '100%' }}>
               Add Product
             </AddBtn>
           </Form>
@@ -476,7 +485,7 @@ export default function Management() {
 
                 <StyledTableCell align="center">Entregue</StyledTableCell>
 
-                <StyledTableCell align="center">R$ {item.orderPrice}</StyledTableCell>
+                <StyledTableCell align="center">R$ {item.subtotal.toFixed(2)}</StyledTableCell>
 
                 <StyledTableCell align="center">
                   <TableBtn onClick={() => handleOpen(item.products)} variant="contained">
@@ -485,7 +494,7 @@ export default function Management() {
                 </StyledTableCell>
 
                 <StyledTableCell align="center">
-                  <TableBtn onClick={() => handleOpen(item.products)} variant="contained">
+                  <TableBtn onClick={() => handleAdress(item.adress)} variant="contained">
                     <EnterIcon />
                   </TableBtn>
                 </StyledTableCell>
